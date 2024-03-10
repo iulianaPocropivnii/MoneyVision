@@ -53,6 +53,12 @@ namespace MoneyVision.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional }
             );
+
+               routes.MapRoute(
+                name: "Login",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+            );
           }
      }
 }

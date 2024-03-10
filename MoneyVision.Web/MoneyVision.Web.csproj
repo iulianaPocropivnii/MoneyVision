@@ -117,11 +117,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\main.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\img\about.jpg" />
     <Content Include="Content\img\apple-touch-icon.png" />
+    <Content Include="Content\img\bg-01.jpg" />
     <Content Include="Content\img\blog\blog-1.jpg" />
     <Content Include="Content\img\blog\blog-2.jpg" />
     <Content Include="Content\img\blog\blog-3.jpg" />
@@ -145,6 +147,7 @@
     <Content Include="Content\img\features-3.svg" />
     <Content Include="Content\img\features-4.svg" />
     <Content Include="Content\img\hero-bg.jpg" />
+    <Content Include="Content\img\icons\favicon.ico" />
     <Content Include="Content\img\portfolio\portfolio-1.jpg" />
     <Content Include="Content\img\portfolio\portfolio-2.jpg" />
     <Content Include="Content\img\portfolio\portfolio-3.jpg" />
@@ -234,12 +237,14 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +288,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -292,7 +298,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyVision.BusinessLogic\MoneyVision.BusinessLogic.csproj">
+      <Project>{79b45bae-2b60-41a5-9e56-2fff6e6a29df}</Project>
+      <Name>MoneyVision.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyVision.Domain\MoneyVision.Domain.csproj">
+      <Project>{c37a9841-5f70-456e-9c93-f1e4cb032db0}</Project>
+      <Name>MoneyVision.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
