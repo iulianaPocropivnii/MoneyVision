@@ -9,6 +9,10 @@ namespace MoneyVision.BusinessLogic
           {
                return _login;
           }
+        public URegisterData UserRegister(URegisterData _register) 
+        {
+            return _register;
+        }
+
      }
 }
-//comment

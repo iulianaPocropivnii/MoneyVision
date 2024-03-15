@@ -4,6 +4,7 @@ namespace MoneyVision.BusinessLogic.Interfaces
 {
      public interface ISession
      {
-          ULoginData UserLogin(ULoginData _login);     
+          ULoginData UserLogin(ULoginData _login);
+        URegisterData UserRegister(URegisterData _register);
      }
 }
