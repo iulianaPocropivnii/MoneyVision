@@ -1,10 +1,10 @@
 ﻿using MoneyVision.Domain.Entities.User;
+using MoneyVision.Domain.Entities.User.Responses;
 
 namespace MoneyVision.BusinessLogic.Interfaces
 {
      public interface ISession
      {
-          ULoginData UserLogin(ULoginData _login);
-        URegisterData UserRegister(URegisterData _register);
+          ULoginResp UserLoginAction(ULoginData data);
      }
 }

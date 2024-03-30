@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using MoneyVision.Web.Models;
+using MoneyVision.Domain.Entities.User.Responses;
 using System.Diagnostics;
 
 
@@ -40,16 +41,20 @@ namespace MoneyVision.Web.Controllers
                          LoginDateTime = DateTime.Now
                     };
 
-                    var userLogin = _session.UserLogin(data);
-                    /*if (userLogin.Status)
+                    Debug.WriteLine("nush");
+                    Debug.WriteLine(login.Credential);
+                    Debug.WriteLine(login.Password);
+                    ULoginResp userResp = _session.UserLoginAction(data);
+                    ViewBag.LogSuccess = userResp.Status;
+                    if (userResp.Status)
                     {
                          return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                         ModelState.AddModelError("", userLogin.StatusMsg);
+                         ModelState.AddModelError("", userResp.StatusMsg);
                          return View();
-                    }*/
+                    }
                }
                return RedirectToAction("Index", "Home");
           }

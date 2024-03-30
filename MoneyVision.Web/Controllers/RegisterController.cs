@@ -37,7 +37,7 @@ namespace MoneyVision.Web.Controllers
                     RegisterDateTime = DateTime.Now
                 };
 
-                var userRegister = _session.UserRegister(data);
+               // var userRegister = _session.UserRegister(data);
                 /*if (userLogin.Status)
                 {
                      return RedirectToAction("Index", "Home");
