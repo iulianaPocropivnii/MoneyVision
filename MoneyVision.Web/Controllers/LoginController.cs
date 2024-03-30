@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using MoneyVision.Web.Models;
+using System.Diagnostics;
 
 
 namespace MoneyVision.Web.Controllers
@@ -27,6 +28,8 @@ namespace MoneyVision.Web.Controllers
           [ValidateAntiForgeryToken]
           public ActionResult Index(UserLogin login)
           {
+               Debug.WriteLine("logare succesiful");
+               Debug.WriteLine(login);
                if (ModelState.IsValid)
                {
                     ULoginData data = new ULoginData
