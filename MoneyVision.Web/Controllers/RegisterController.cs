@@ -33,20 +33,21 @@ namespace MoneyVision.Web.Controllers
                 {
                     Credential = register.Credential,
                     Password = register.Password,
+                    Email = register.Email,
                     RegisterIp = Request.UserHostAddress,
                     RegisterDateTime = DateTime.Now
                 };
 
-               // var userRegister = _session.UserRegister(data);
-                /*if (userLogin.Status)
+               var userRegister = _session.UserRegisterAction(data);
+                if (userRegister.Status)
                 {
                      return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                     ModelState.AddModelError("", userLogin.StatusMsg);
+                     ModelState.AddModelError("", userRegister.StatusMsg);
                      return View();
-                }*/
+                }
             }
             return RedirectToAction("Index", "Home");
         }
