@@ -10,9 +10,9 @@ namespace MoneyVision.BusinessLogic
           {
                return base.UserLoginAction(_login);
           }
-        public URegisterData UserRegister(URegisterData _register) 
+        public URegisterResp UserRegisterAction(URegisterData _register) 
         {
-            return _register;
+            return base.UserRegisterAction(_register);
         }
 
      }

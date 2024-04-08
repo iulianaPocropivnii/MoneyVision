@@ -41,9 +41,6 @@ namespace MoneyVision.Web.Controllers
                          LoginDateTime = DateTime.Now
                     };
 
-                    Debug.WriteLine("nush");
-                    Debug.WriteLine(login.Credential);
-                    Debug.WriteLine(login.Password);
                     ULoginResp userResp = _session.UserLoginAction(data);
                     ViewBag.LogSuccess = userResp.Status;
                     if (userResp.Status)
