@@ -7,11 +7,13 @@ using System.Web.Mvc;
 using MoneyVision.Web.Models;
 using MoneyVision.Domain.Entities.User.Responses;
 using System.Diagnostics;
+using System.Web.UI.WebControls;
+using System.Web;
 
 
 namespace MoneyVision.Web.Controllers
 {
-     public class LoginController : Controller
+     public class LoginController : BaseController
      {
           private readonly ISession _session;
           public LoginController()
@@ -22,14 +24,19 @@ namespace MoneyVision.Web.Controllers
 
           public ActionResult Index()
           {
-               return View();
+            SessionStatus();
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
           }
 
           [HttpPost]
           [ValidateAntiForgeryToken]
           public ActionResult Index(UserLogin login)
           {
-               Debug.WriteLine("logare succesiful");
+               Debug.WriteLine("logare succesful");
                Debug.WriteLine(login);
                if (ModelState.IsValid)
                {
@@ -42,10 +49,11 @@ namespace MoneyVision.Web.Controllers
                     };
 
                     ULoginResp userResp = _session.UserLoginAction(data);
-                    ViewBag.LogSuccess = userResp.Status;
-                    if (userResp.Status)
+                if (userResp.Status)
                     {
-                         return RedirectToAction("Index", "Home");
+                    HttpCookie cookie = _session.GenCookie(login.Credential);
+                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+                    return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -53,7 +61,9 @@ namespace MoneyVision.Web.Controllers
                          return View();
                     }
                }
-               return RedirectToAction("Index", "Home");
-          }
+            return View();
+
+
+        }
      }
 }
