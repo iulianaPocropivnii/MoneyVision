@@ -31,7 +31,7 @@ namespace MoneyVision.Web.Controllers
             {
                 URegisterData data = new URegisterData
                 {
-                    Credential = register.Credential,
+                    Username = register.Username,
                     Password = register.Password,
                     Email = register.Email,
                     RegisterIp = Request.UserHostAddress,

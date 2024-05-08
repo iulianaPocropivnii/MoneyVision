@@ -36,13 +36,11 @@ namespace MoneyVision.Web.Controllers
           [ValidateAntiForgeryToken]
           public ActionResult Index(UserLogin login)
           {
-               Debug.WriteLine("logare succesful");
-               Debug.WriteLine(login);
                if (ModelState.IsValid)
                {
                     ULoginData data = new ULoginData
                     {
-                         Credential = login.Credential,
+                         Email = login.Email,
                          Password = login.Password,
                          LoginIp = Request.UserHostAddress,
                          LoginDateTime = DateTime.Now
@@ -51,7 +49,7 @@ namespace MoneyVision.Web.Controllers
                     ULoginResp userResp = _session.UserLoginAction(data);
                 if (userResp.Status)
                     {
-                    HttpCookie cookie = _session.GenCookie(login.Credential);
+                    HttpCookie cookie = _session.GenCookie(login.Email);
                     ControllerContext.HttpContext.Response.Cookies.Add(cookie);
                     return RedirectToAction("Index", "Home");
                     }
