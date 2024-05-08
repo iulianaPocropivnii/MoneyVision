@@ -53,10 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinesLogic.cs" />
-    <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
-    <Compile Include="DBModel\SessionContext.cs" />
-    <Compile Include="DBModel\UserContext.cs" />
+    <Compile Include="DBModel\DbContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionBL.cs" />
@@ -72,7 +70,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DBModel\Seed\" />
     <Folder Include="System\" />
   </ItemGroup>
   <ItemGroup>

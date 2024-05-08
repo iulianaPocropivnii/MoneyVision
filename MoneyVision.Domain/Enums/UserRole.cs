@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MoneyVision.Domain.Enums
 {
-    public enum URole
+    public enum UserRole
     {
-        User,
-        Moderator, 
+        Viewer,
+        Editor, 
         Admin
     }
 }

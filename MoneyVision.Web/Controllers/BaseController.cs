@@ -29,8 +29,9 @@ namespace MoneyVision.Web.Controllers
                 {
                     System.Web.HttpContext.Current.SetMySessionObject(profile);
                     System.Web.HttpContext.Current.Session["LoginStatus"] = "login";
-                }
-                else
+                    System.Web.HttpContext.Current.Session["LoginLevel"] = profile.Level;
+                    }
+                    else
                 {
                     System.Web.HttpContext.Current.Session.Clear();
                     if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("X-KEY"))
