@@ -1,0 +1,16 @@
+﻿.sidebar-layout {
+     height: 100vh;
+     display: flex;
+}
+
+.sidebar-layout-sidebar {
+     min-width: 200px;
+     max-width: 300px;
+     border-right: 1px solid #333;
+     display: flex;
+     flex-direction: column;
+}
+
+.sidebar-layout-content {
+     flex-grow: 1;
+}

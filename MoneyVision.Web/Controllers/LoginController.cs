@@ -27,7 +27,7 @@ namespace MoneyVision.Web.Controllers
             SessionStatus();
             if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
             return View();
           }
@@ -51,7 +51,7 @@ namespace MoneyVision.Web.Controllers
                     {
                     HttpCookie cookie = _session.GenCookie(login.Email);
                     ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
                     }
                     else
                     {

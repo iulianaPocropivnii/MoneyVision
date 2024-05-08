@@ -1,0 +1,10 @@
+﻿<h1>Sidebar</h1>
+
+<ul>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/dashboard" ? "active" : "")" href="/dashboard">Dashboard</a></li>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/categories" ? "active" : "")" href="/category">Categories</a></li>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/transactions" ? "active" : "")" href="/transactions">Transactions</a></li>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/workspace" ? "active" : "")" href="/workspace">Workspace</a></li>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/users" ? "active" : "")" href="/users">Users</a></li>
+     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/profile" ? "active" : "")" href="/profile">Profile</a></li>
+</ul>

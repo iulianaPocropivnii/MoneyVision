@@ -61,11 +61,17 @@ namespace MoneyVision.Web
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-                name: "Register",
+               routes.MapRoute(
+                   name: "Register",
+                   url: "{controller}/{action}/{id}",
+                   defaults: new { controller = "Register", action = "Index", id = UrlParameter.Optional }
+               );
+
+               routes.MapRoute(
+                name: "Dashboard",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Register", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
-        }
+          }
      }
 }
