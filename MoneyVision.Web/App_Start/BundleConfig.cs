@@ -15,6 +15,7 @@ namespace MoneyVision.Web
                                                     "~/Content/animate.css",
                                                     "~/Content/css/style.css",
                                                     "~/Content/css/main.css",
+                                                    "~/Content/css/sidebar-layout.css",
                                                     "~/Content/font-awesome.min.css"
                                                 ));
 
