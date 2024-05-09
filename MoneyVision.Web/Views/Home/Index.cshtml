@@ -3,48 +3,20 @@
     ViewBag.Title = "Index";
 }
 
+
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex justify-cntent-center align-items-center">
-    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
-        <!-- Slide 1 -->
-        <div class="carousel-item active">
-            <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Money Vision</span></h2>
-                <p class="animate__animated animate__fadeInUp">Easily manage income, expenses, and budgets securely in one place.</p>
-                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Start Now</a>
-            </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-item">
-            <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item">
-            <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-            </div>
-        </div>
-
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-        </a>
-
+<div class="home_hero-left">
+    <div class="home_hero-copy">
+        <h1>Welcome to<br><span>Money Vision</span></h1>
+        <p>Easily manage income, expenses,<br><span> and budgets securely in one place.</span></p>
+        <a href="#" class="btn-get-started">Start Now</a>
     </div>
-</section><!-- End Hero -->
+    <img src="https://assets-global.website-files.com/640f69143ec11b21d42015c6/6502e96f8b7ff92feac8c8ab_hero-phone-p-800.png" loading="lazy" alt="Phone" class="phone-img">
+    <img src="https://assets-global.website-files.com/640f69143ec11b21d42015c6/6502e96fd87aecac6ad34629_hero-dollars-p-500.png" loading="lazy" alt="Dollars" class="dollars-img">
+</div>
+
+
+<!-- End Hero -->
 
 <main id="main">
 
@@ -55,33 +27,34 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                     <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                        <div class="icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h4 class="title"><a href="">Budget Tracking</a></h4>
+                        <p class="description">Users can set up budgets for different categories of expenses and track their spending in real-time.</p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box icon-box-cyan">
+                        <div class="icon"><i class="fas fa-money-bill-alt"></i></div>
+                        <h4 class="title"><a href="">Expense Tracking</a></h4>
+                        <p class="description">The app categorizes expenses, provides detailed transaction history, and generates reports to visualize spending habits.</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <div class="icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h4 class="title"><a href="">Bill Management</a></h4>
+                        <p class="description">The app helps manage bills, track payment due dates, and organize invoices efficiently.</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box icon-box-blue">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h4 class="title"><a href="">Social Sharing and Collaboration</a></h4>
+                        <p class="description">Users can invite friends or family members to join the app, allowing them to collaborate on budgeting and financial goals.</p>
                     </div>
                 </div>
 
@@ -92,110 +65,81 @@
     <!-- ======= Why Us Section ======= -->
     <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
         <div class="container">
-
             <div class="row">
-                <div class="col-lg-6 video-box">
-                    <img src="/Content/img/why-us.jpg" class="img-fluid" alt="">
-                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                <div class="col-lg-6">
+                    <img src="~/Content/img/Money-Management-Tool-On-Mobile.jpg" class="img-fluid" alt="">
                 </div>
-
                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                    </div>
-
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-                    </div>
+                    <h2>Money doesn’t have to be messy</h2>
+                    <p>Discover how Money Vision can transform your finances and empower you to love your spending while boosting your savings.</p>
+                    <!-- <div class="btn-custom">
+        <a href="#" class="btn-custom animate__animated animate__fadeInUp rounded">Start Now</a>
+    </div>-->
 
                 </div>
             </div>
-
         </div>
-    </section><!-- End Why Us Section -->
-    <!-- ======= Features Section ======= -->
+    </section>
+    <!-- End Why Us Section -->
+                    <!-- ======= Features Section ======= -->
     <section class="features">
         <div class="container">
+            <h2 class="section-title text-left">How Money Vision Works</h2>
+            <div class="row">
+                <!-- Left Section -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6" data-aos="fade-up">
+                            <div class="row align-items-center icon-box-pink">
+                                <div class="col-md-2">
+                                    <div class="icon"><i class="fas fa-user-plus fa-2x" style="color: #ED729B;"></i></div>
+                                </div>
+                                <div class="col-md-10">
+                                    <h3>Sign up for free</h3>
+                                    <p>It’s easy - no credit card or commitment required.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="section-title">
-                <h2>Features</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-            </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6" data-aos="fade-up">
+                            <div class="row align-items-center icon-box-green">
+                                <div class="col-md-2">
+                                    <div class="icon"><i class="fas fa-money-bill-wave fa-2x" style="color: #6DCC4B; "></i></div>
+                                </div>
+                                <div class="col-md-10">
+                                    <h3>Make a money plan</h3>
+                                    <p>Add your accounts and expenses, set savings targets, <br> <span>and share your plan with your friends</span>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5">
-                    <img src="/Content/img/features-1.svg" class="img-fluid" alt="">
+                    <div class="row mt-4">
+                        <div class="col-md-6" data-aos="fade-up">
+                            <div class="row align-items-center icon-box-cyan">
+                                <div class="col-md-2">
+                                    <div class="icon"><i class="fas fa-bed fa-2x" style="color: #6CCAC6;"></i></div>
+                                </div>
+                                <div class="col-md-10">
+                                    <h3>Enjoy less stress</h3>
+                                    <p>Start feeling confident, content, and secure in your financial life.<br> <span>You might even sleep better.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-7 pt-4">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5 order-1 order-md-2">
-                    <img src="/Content/img/features-2.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5 order-2 order-md-1">
-                    <h3>Corporis temporibus maiores provident</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div>
-
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5">
-                    <img src="/Content/img/features-3.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5">
-                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
-                    <ul>
-                        <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                        <li><i class="bi bi-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
-                    </ul>
+                <!-- Right Section -->
+                <div class="col-md-6" data-aos="fade-up">
+                    <!-- Replace the content of this div with your image or other content -->
+                    <img src="https://assets-global.website-files.com/640f69143ec11b21d42015c6/651dc6053a36f068c1fcba3f_app-devices-spread-spark-p-800.webp"loading="lazy" alt="Laptop" class="laptop-img">
                 </div>
             </div>
-
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-5 order-1 order-md-2">
-                    <img src="/Content/img/features-4.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 pt-5 order-2 order-md-1">
-                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div>
-
         </div>
-    </section><!-- End Features Section -->
+    </section>
+
+                    <!-- End Features Section -->
 
 </main><!-- End #main -->
