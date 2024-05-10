@@ -15,5 +15,6 @@ namespace MoneyVision.Domain.Entities.User
         public DateTime LastLogin { get; set; }
         public string LasIp { get; set; }
         public UserRole Level { get; set; }
+        public int WorkspaceId { get; set; }
     }
 }

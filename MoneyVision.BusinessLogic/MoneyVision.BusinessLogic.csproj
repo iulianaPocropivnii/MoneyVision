@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinesLogic.cs" />
+    <Compile Include="Core\TransactionApi.cs" />
     <Compile Include="Core\UserApi.cs" />
     <Compile Include="DBModel\DbContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />

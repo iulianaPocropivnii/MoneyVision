@@ -16,14 +16,6 @@ namespace MoneyVision.Web.Controllers
 {
      public class ProfileController : BaseController
      {
-          private readonly ISession _session;
-
-          public ProfileController()
-          {
-               var bl = new BussinesLogic();
-               _session = bl.GetSessionBL();
-          }
-
           [HttpGet]
           public ActionResult Index()
           {

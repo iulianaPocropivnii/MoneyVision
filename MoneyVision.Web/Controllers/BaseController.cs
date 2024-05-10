@@ -11,7 +11,7 @@ namespace MoneyVision.Web.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly ISession _session;
+        protected readonly ISession _session;
 
         public BaseController()
         {
