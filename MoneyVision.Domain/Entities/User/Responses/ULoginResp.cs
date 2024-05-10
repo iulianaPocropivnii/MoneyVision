@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MoneyVision.Domain.Entities.User.Responses
 {
-     public class ULoginResp
+     public class ULoginResp : GenericResp
      {
-          public bool Status { get; set; }
-          public string StatusMsg { get; set; }
+
      }
 }

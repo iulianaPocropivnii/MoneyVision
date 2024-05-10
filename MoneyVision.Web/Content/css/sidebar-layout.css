@@ -14,3 +14,8 @@
 .sidebar-layout-content {
      flex-grow: 1;
 }
+
+.transactions-list {
+     display: grid;
+     grid-template-columns: repeat(6, 1fr);
+}

@@ -12,6 +12,7 @@ namespace MoneyVision.Web.Controllers
           // GET: Dashboard
           public ActionResult Index()
           {
+               SessionStatus();
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                {
                     return RedirectToAction("Index", "Login");

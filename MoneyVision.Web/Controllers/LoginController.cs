@@ -16,13 +16,6 @@ namespace MoneyVision.Web.Controllers
 {
      public class LoginController : BaseController
      {
-          private readonly ISession _session;
-          public LoginController()
-          {
-               var bl = new BussinesLogic();
-               _session = bl.GetSessionBL();
-          }
-
           public ActionResult Index()
           {
             SessionStatus();

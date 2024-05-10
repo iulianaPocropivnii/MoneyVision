@@ -199,6 +199,7 @@ namespace MoneyVision.BusinessLogic.Core
                userminimal.Id = curentUser.Id;
                userminimal.Level = curentUser.Level;
                userminimal.Email = curentUser.Email;
+               userminimal.WorkspaceId = curentUser.WorkspaceId;
 
                return userminimal;
           }

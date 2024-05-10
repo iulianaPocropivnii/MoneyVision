@@ -53,6 +53,10 @@
   <ItemGroup>
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category\Category.cs" />
+    <Compile Include="Entities\GenericResp.cs" />
+    <Compile Include="Entities\Transaction\Requests\TransactionsListData.cs" />
+    <Compile Include="Entities\Transaction\Responses\TransactionDto.cs" />
+    <Compile Include="Entities\Transaction\Responses\TransactionsListResp.cs" />
     <Compile Include="Entities\Transaction\Transaction.cs" />
     <Compile Include="Entities\User\Requests\UProfileData.cs" />
     <Compile Include="Entities\User\Responses\ULoginResp.cs" />
