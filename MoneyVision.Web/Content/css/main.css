@@ -6,30 +6,31 @@
 [ FONT ]*/
 
 @font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+	font-family: 'Montserrat-Regular';
+	src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+	font-family: 'Montserrat-Medium';
+	src: url('../fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+	font-family: 'Montserrat-Bold';
+	src: url('../fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+	font-family: 'Montserrat-SemiBold';
+	src: url('../fonts/montserrat/Montserrat-SemiBold.ttf') format('truetype');
 }
-
-
-
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
+
+/* home-hero.css */
+
+
 
 * {
 	margin: 0px; 
@@ -39,12 +40,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	font-family: Montserrat, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font-family: Montserrat;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -70,7 +71,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Poppins-Regular;
+	font-family: Montserrat;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -351,7 +352,7 @@ iframe {
 }
 
 .label-checkbox100 {
-  font-family: Poppins-Regular;
+  font-family: Montserrat;
   font-size: 13px;
   color: #fff;
   line-height: 1.2;
