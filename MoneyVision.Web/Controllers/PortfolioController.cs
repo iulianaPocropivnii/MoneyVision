@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using MoneyVision.BusinessLogic.DBModel;
+using MoneyVision.Domain.Entities.User.Requests;
+using System.Data.Entity;
 using System.Web.Mvc;
+using System.Web;
 
 namespace MoneyVision.Web.Controllers
 {
-    public class PortfolioController : Controller
-    {
-        // GET: Portfolio
-        public ActionResult Index()
-        {
-            return View();
-        }
-    }
+     public class UserController : Controller
+     {
+         
+     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using MoneyVision.Web.Models;
 using MoneyVision.Domain.Entities.User.Responses;
+using MoneyVision.Domain.Entities.User.Requests;
 using System.Diagnostics;
 using System.Web.UI.WebControls;
 using System.Web;

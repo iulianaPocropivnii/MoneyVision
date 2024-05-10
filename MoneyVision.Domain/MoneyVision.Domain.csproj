@@ -54,7 +54,9 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category\Category.cs" />
     <Compile Include="Entities\Transaction\Transaction.cs" />
+    <Compile Include="Entities\User\Requests\UProfileData.cs" />
     <Compile Include="Entities\User\Responses\ULoginResp.cs" />
+    <Compile Include="Entities\User\Responses\UProfileResp.cs" />
     <Compile Include="Entities\User\Responses\URegisterResp.cs" />
     <Compile Include="Entities\Session\Session.cs" />
     <Compile Include="Entities\User\User.cs" />
