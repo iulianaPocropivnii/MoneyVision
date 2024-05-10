@@ -58,6 +58,7 @@
     <Compile Include="Entities\Transaction\Responses\TransactionDto.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionsListResp.cs" />
     <Compile Include="Entities\Transaction\Transaction.cs" />
+    <Compile Include="Entities\UserWorkspace\UserWorkspace.cs" />
     <Compile Include="Entities\User\Requests\UProfileData.cs" />
     <Compile Include="Entities\User\Responses\ULoginResp.cs" />
     <Compile Include="Entities\User\Responses\UProfileResp.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Entities\User\Requests\ULoginData.cs" />
     <Compile Include="Entities\User\Requests\URegisterData.cs" />
     <Compile Include="Entities\User\UserMinimal.cs" />
+    <Compile Include="Entities\Workspace\Requests\WorkspacesListData.cs" />
+    <Compile Include="Entities\Workspace\Response\WorkspacesListResp.cs" />
     <Compile Include="Entities\Workspace\Workspace.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

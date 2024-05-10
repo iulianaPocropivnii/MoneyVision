@@ -69,9 +69,15 @@ namespace MoneyVision.Web
 
                routes.MapRoute(
                 name: "Dashboard",
-                url: "{controller}/{action}/{id}",
+                url: "Workspaces/{workspaceId}/{controller}/{action}/{id}",
                 defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
+
+               routes.MapRoute(
+               name: "Transactions",
+               url: "Workspaces/{workspaceId}/{controller}/{action}/{id}",
+               defaults: new { controller = "Transactions", action = "Index", id = UrlParameter.Optional }
+           );
           }
      }
 }

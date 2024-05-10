@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System;
 using MoneyVision.Domain.Enums;
 using MoneyVision.Domain.Entities.Workspace;
+using MoneyVision.Domain.Entities.UserWorkspace;
 
 
 namespace MoneyVision.BusinessLogic.Core
@@ -91,6 +92,7 @@ namespace MoneyVision.BusinessLogic.Core
                using (var db = new DatabaseContext())
                {
                     workspace = db.Workspaces.Create();
+                    workspace.Name = data.Username + " " + "Workspace";
 
                     db.Workspaces.Add(workspace);
                     db.SaveChanges();
@@ -105,11 +107,24 @@ namespace MoneyVision.BusinessLogic.Core
                     user.Email = data.Email;
                     user.Username = data.Username;
                     user.Password = pass;
-                    user.Level = UserRole.Admin;
                     user.WorkspaceId = workspace.Id;
 
                     var result = db.Users.Add(user);
 
+                    db.SaveChanges();
+               }
+
+               UserWorkspace userWorkspace; 
+
+               using (var db = new DatabaseContext())
+               {
+                    userWorkspace = db.UserWorkspaces.Create();
+
+                    userWorkspace.UserId = user.Id;
+                    userWorkspace.WorkspaceId = workspace.Id;
+                    userWorkspace.Level = UserRole.Admin;
+
+                    db.UserWorkspaces.Add(userWorkspace);
                     db.SaveChanges();
                }
 
@@ -122,7 +137,6 @@ namespace MoneyVision.BusinessLogic.Core
                     return new URegisterResp { Status = false };
                }
           }
-
 
           internal HttpCookie Cookie(string loginEmail)
           {
@@ -197,7 +211,50 @@ namespace MoneyVision.BusinessLogic.Core
                var userminimal = new UserMinimal();
                userminimal.Username = curentUser.Username;
                userminimal.Id = curentUser.Id;
-               userminimal.Level = curentUser.Level;
+               userminimal.Email = curentUser.Email;
+               userminimal.WorkspaceId = curentUser.WorkspaceId;
+
+               return userminimal;
+          }
+
+          internal UserMinimal UserCookie(string cookie, int workspaceId)
+          {
+               Session session;
+               User curentUser;
+               UserWorkspace userWorkspace;
+
+               using (var db = new DatabaseContext())
+               {
+                    session = db.Sessions.FirstOrDefault(s => s.CookieString == cookie && s.ExpireTime > DateTime.Now);
+               }
+
+               if (session == null) return null;
+               using (var db = new DatabaseContext())
+               {
+                    var validate = new EmailAddressAttribute();
+                    if (validate.IsValid(session.Email))
+                    {
+                         curentUser = db.Users.FirstOrDefault(u => u.Email == session.Email);
+                    }
+                    else
+                    {
+                         curentUser = db.Users.FirstOrDefault(u => u.Username == session.Email);
+                    }
+               }
+
+               if (curentUser == null) return null;
+
+               using (var db = new DatabaseContext())
+               {
+                    userWorkspace = db.UserWorkspaces.FirstOrDefault(uw => uw.UserId == curentUser.Id && uw.WorkspaceId == workspaceId);
+               }
+
+               if (userWorkspace == null) return null;
+
+               var userminimal = new UserMinimal();
+               userminimal.Username = curentUser.Username;
+               userminimal.Id = curentUser.Id;
+               userminimal.Level = userWorkspace.Level;
                userminimal.Email = curentUser.Email;
                userminimal.WorkspaceId = curentUser.WorkspaceId;
 

@@ -38,7 +38,5 @@ namespace MoneyVision.Domain.Entities.User
 
           [StringLength(30)]
           public string LastIp { get; set; }
-
-          public UserRole Level { get; set; }
      }
 }

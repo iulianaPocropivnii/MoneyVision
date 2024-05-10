@@ -8,9 +8,9 @@ namespace MoneyVision.Web.Controllers
      public class TransactionsController : BaseController
      {
           // GET: Transactions
-          public ActionResult Index()
+          public ActionResult Index(int workspaceId)
           {
-               SessionStatus();
+               SessionStatus(workspaceId);
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                {
                     return RedirectToAction("Index", "Dashboard");
