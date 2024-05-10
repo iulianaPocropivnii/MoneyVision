@@ -1,5 +1,6 @@
 ﻿using MoneyVision.BusinessLogic.DBModel;
 using MoneyVision.Domain.Entities.User.Responses;
+using MoneyVision.Domain.Entities.User.Requests;
 using MoneyVision.Domain.Entities.User;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ using System.Data.Entity;
 using System;
 using MoneyVision.Domain.Enums;
 using MoneyVision.Domain.Entities.Workspace;
+
 
 namespace MoneyVision.BusinessLogic.Core
 {
@@ -68,6 +70,19 @@ namespace MoneyVision.BusinessLogic.Core
           }
           public URegisterResp UserRegisterAction(URegisterData data)
           {
+               User existingUser;
+
+               using (var db = new DatabaseContext())
+               {
+                    existingUser = db.Users.FirstOrDefault(u => u.Email == data.Email);
+               }
+
+               if (existingUser != null)
+               {
+                    return new URegisterResp { Status = false, StatusMsg = "Email already exists" };
+               }
+
+
                User user;
                var pass = LoginHelper.HashGen(data.Password);
 
@@ -187,5 +202,67 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
+
+          internal UProfileResp UserProfileAction(UProfileData data, UserMinimal currentUser)
+          {
+               var response = new UProfileResp();
+
+               if (currentUser == null)
+               {
+                    response.Status = false;
+                    response.StatusMsg = "User not found in session";
+                    return response;
+               }
+
+               using (var db = new DatabaseContext())
+               {
+                    var user = db.Users.FirstOrDefault(u => u.Id == currentUser.Id);
+
+                    if (user == null)
+                    {
+                         response.Status = false;
+                         response.StatusMsg = "User not found";
+                         return response;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(data.NewUsername))
+                    {
+                         user.Username = data.NewUsername;
+                    }
+
+
+                    if (!string.IsNullOrWhiteSpace(data.CurrentPassword) && !string.IsNullOrWhiteSpace(data.NewPassword))
+                    {
+                         var currentPass = LoginHelper.HashGen(data.CurrentPassword);
+
+                         if (currentPass != user.Password)
+                         {
+                              response.Status = false;
+                              response.StatusMsg = "Incorrect current password";
+                              return response;
+                         }
+
+                         user.Password = LoginHelper.HashGen(data.NewPassword);
+                    }
+
+                    try
+                    {
+                         db.Entry(user).State = EntityState.Modified;
+                         db.SaveChanges();
+                         response.Status = true;
+                         response.StatusMsg = "Profile updated successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                         response.Status = false;
+                         response.StatusMsg = "An error occurred: " + ex.Message;
+                    }
+               }
+
+               return response;
+          }
      }
+
 }
+
+

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyVision.Domain.Entities.User
+namespace MoneyVision.Domain.Entities.User.Requests
 {
      public class URegisterData
      {

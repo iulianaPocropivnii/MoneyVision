@@ -1,5 +1,6 @@
 ﻿using MoneyVision.BusinessLogic;
 using MoneyVision.BusinessLogic.Interfaces;
+using MoneyVision.Domain.Entities.User.Requests;
 using MoneyVision.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace MoneyVision.Web.Controllers
                var userRegister = _session.UserRegisterAction(data);
                 if (userRegister.Status)
                 {
-                     return RedirectToAction("Index", "Home");
+                     return RedirectToAction("Index", "Login");
                 }
                 else
                 {
@@ -49,7 +50,7 @@ namespace MoneyVision.Web.Controllers
                      return View();
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
     }
 }
