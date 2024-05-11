@@ -13,11 +13,13 @@
                width: 100%; /* Adjust as needed */
           }
 
-          .wrap-login100 {
-               width: 30%;
-               height: 10%;
-               margin: auto; /* Center the login box horizontally */
-          }
+         .wrap-login100 {
+             width: 30%;
+             height: 10%;
+             margin: auto; /* Center the login box horizontally */
+             background-color: #142634; /* Blue background color */
+             font-family: 'Montserrat', sans-serif; /* Montserrat font */
+         }
 
           .login100-form {
                height: 100%;
@@ -27,7 +29,7 @@
 <body>
 
      <div class="limiter">
-          <div class="container-login100" style="background-image: url('/Content/img/bg-01.jpg');">
+          <div class="container-login100">
                <div class="wrap-login100">
                     @Html.ValidationSummary(true)
                     @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
