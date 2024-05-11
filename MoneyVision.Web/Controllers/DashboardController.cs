@@ -9,15 +9,14 @@ namespace MoneyVision.Web.Controllers
 {
      public class DashboardController : BaseController
      {
-          // GET: Dashboard
-          public ActionResult Index()
+          public ActionResult Index(int workspaceId)
           {
-               SessionStatus();
+               SessionStatus(workspaceId);
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                {
                     return RedirectToAction("Index", "Login");
                }
-               return View();
+               return View(workspaceId);
           }
      }
 }

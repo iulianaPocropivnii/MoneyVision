@@ -11,6 +11,7 @@ using MoneyVision.Domain.Entities.User;
 using MoneyVision.Domain.Entities.Category;
 using MoneyVision.Domain.Entities.Transaction;
 using MoneyVision.Domain.Entities.Workspace;
+using MoneyVision.Domain.Entities.UserWorkspace;
 
 namespace MoneyVision.BusinessLogic.DBModel
 {
@@ -19,6 +20,8 @@ namespace MoneyVision.BusinessLogic.DBModel
           public DatabaseContext() : base("name = MoneyVision") { }
 
           public virtual DbSet<User> Users { get; set; }
+
+          public virtual DbSet<UserWorkspace> UserWorkspaces { get; set; }
 
           public virtual DbSet<Session> Sessions { get; set; }
 
