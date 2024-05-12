@@ -2,31 +2,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-     <meta charset="utf-8">
-     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-     <title>Dashboard</title>
-     <meta content="" name="description">
-     <meta content="" name="keywords">
+    <title>Dashboard</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-     <!-- Favicons -->
-     <link href="assets/img/favicon.png" rel="icon">
-     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
 
-     <!--  <link href="Content/css/style.css" rel="stylesheet"> -->
-     <!-- Google Fonts -->
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 
-     @Styles.Render("~/bundles/css")
+    <!--  <link href="Content/css/style.css" rel="stylesheet"> -->
+    <!-- Google Fonts -->
+
+    @Styles.Render("~/bundles/css")
 </head>
 <body class="sidebar-layout">
-     <nav class="sidebar-layout-sidebar">
-          @Html.Partial("_Sidebar")
-     </nav>
-     <main class="sidebar-layout-content">
-          @RenderBody()
-     </main>
-     @Scripts.Render("~/bundles/bootstrap/js")
+    <nav class="sidebar-layout-sidebar">
+        <div class="sidebar-logo">
+            <img src="~/Content/img/logo money vision.png" alt="Your Logo">
+        </div>
 
-     @RenderSection("scripts", required: false)
+        @Html.Partial("_Sidebar")
+    </nav>
+    <main class="sidebar-layout-content">
+        @RenderBody()
+    </main>
+    @Scripts.Render("~/bundles/bootstrap/js")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

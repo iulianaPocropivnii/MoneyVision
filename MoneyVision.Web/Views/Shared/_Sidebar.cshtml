@@ -1,26 +1,50 @@
-﻿<h1>Sidebar</h1>
-
+﻿
 <ul id="sidebar-links">
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/dashboard" ? "active" : "")" data-sidebar-resource="dashboard">Dashboard</a></li>
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/categories" ? "active" : "")" data-sidebar-resource="categories">Categories</a></li>
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/transactions" ? "active" : "")" data-sidebar-resource="transactions">Transactions</a></li>
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/workspaces" ? "active" : "")" href="/workspaces">Workspace</a></li>
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/users" ? "active" : "")" data-sidebar-resource="users">Users</a></li>
-     <li><a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/profile" ? "active" : "")" data-sidebar-resource="profile">Profile</a></li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/dashboard" ? "active" : "")" data-sidebar-resource="dashboard">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+    </li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/categories" ? "active" : "")" data-sidebar-resource="categories">
+            <i class="fas fa-list"></i> Categories
+        </a>
+    </li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/transactions" ? "active" : "")" data-sidebar-resource="transactions">
+            <i class="fas fa-exchange-alt"></i> Transactions
+        </a>
+    </li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/workspaces" ? "active" : "")" href="/workspaces">
+            <i class="fas fa-briefcase"></i> Workspace
+        </a>
+    </li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/users" ? "active" : "")" data-sidebar-resource="users">
+            <i class="fas fa-users"></i> Users
+        </a>
+    </li>
+    <li>
+        <a class="@(Url.RouteUrl(ViewContext.RouteData.Values) == "/profile" ? "active" : "")" data-sidebar-resource="profile">
+            <i class="fas fa-user"></i> Profile
+        </a>
+    </li>
 </ul>
 
+
 <script>
-     // TODO refactor this
-     const pathname = window.location.pathname;
+    // TODO refactor this
+    const pathname = window.location.pathname;
 
-     const parts = pathname.split('/');
+    const parts = pathname.split('/');
 
-     const workspaceId = parts[2];
+    const workspaceId = parts[2];
 
-     document.querySelectorAll('[data-sidebar-resource]').forEach(link => {
-          const resource = link.getAttribute('data-sidebar-resource');
+    document.querySelectorAll('[data-sidebar-resource]').forEach(link => {
+        const resource = link.getAttribute('data-sidebar-resource');
 
 
-          link.setAttribute('href', `/Workspaces/${workspaceId}/${resource}/Index`);
-     })
+        link.setAttribute('href', `/Workspaces/${workspaceId}/${resource}/Index`);
+    })
 </script>

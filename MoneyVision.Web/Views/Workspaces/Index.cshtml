@@ -8,38 +8,43 @@
 
 <html>
 <head>
-     <meta charset="utf-8">
-     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-     <title>Money Vision</title>
-     <meta content="" name="description">
-     <meta content="" name="keywords">
+    <title>Money Vision</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-     <!-- Favicons -->
-     <link href="assets/img/favicon.png" rel="icon">
-     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-     <style>
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
 
-          body {
-               font-family: 'Montserrat', sans-serif;
-          }
-     </style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 
 
-     <!--  <link href="Content/css/style.css" rel="stylesheet"> -->
-     <!-- Google Fonts -->
+    <!--  <link href="Content/css/style.css" rel="stylesheet"> -->
+    <!-- Google Fonts -->
 
-     @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/css")
 </head>
-<body>
-     <h1>Workspaces</h1>
-     <div>
-          @foreach (var item in Model.Workspaces)
-          {
-               <div><a href="/Workspaces/@item.Id/dashboard/Index">@item.Name</a></div>
-          }
-     </div>
+<body class="workspace">
+    <div class="workspace-container">
+        <h1>All you need<br><span>in a workspace</span></h1>
+        <p>Take control of your finances.</p>
+        @foreach (var item in Model.Workspaces)
+        {
+            <div class="workspace-item"><a href="/Workspaces/@item.Id/dashboard/Index">@item.Name</a></div>
+        }
+    </div>
+    <div class="workspace-image-container">
+        <img src="https://assets-global.website-files.com/640f69143ec11b21d42015c6/651db56618c50f92e1419114_img_features_sync-p-1080.webp" alt="Features" class="workspace-features-img">
+    </div>
 </body>
+
 </html>
