@@ -315,7 +315,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return response;
           }
-          internal UProfileResp UserLogoutAction(UserMinimal currentUser)
+          internal void UserLogoutAction(UserMinimal currentUser)
           {
                Session session;
 
@@ -334,7 +334,6 @@ namespace MoneyVision.BusinessLogic.Core
                };
                HttpContext.Current.Response.Cookies.Add(apiCookie);
 
-               return new UProfileResp();
           }
 
 

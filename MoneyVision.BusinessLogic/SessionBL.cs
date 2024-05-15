@@ -59,9 +59,9 @@ namespace MoneyVision.BusinessLogic
                return this.workspaceApi.WorkspacesListAction(data);
           }
 
-          public UProfileResp UserLogoutAction(UserMinimal currentUser)
+          public void UserLogoutAction(UserMinimal currentUser)
           {
-               return this.userApi.UserLogoutAction(currentUser);
+               this.userApi.UserLogoutAction(currentUser);
           }
      }
 }
