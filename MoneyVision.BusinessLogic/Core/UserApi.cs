@@ -12,10 +12,11 @@ using System;
 using MoneyVision.Domain.Enums;
 using MoneyVision.Domain.Entities.Workspace;
 using MoneyVision.Domain.Entities.UserWorkspace;
+using System.Net;
 
 
 namespace MoneyVision.BusinessLogic.Core
-{
+{ 
      public class UserApi
      {
           internal ULoginResp UserLoginAction(ULoginData data)
@@ -69,6 +70,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new ULoginResp { Status = true };
                }
           }
+         
           public URegisterResp UserRegisterAction(URegisterData data)
           {
                User existingUser;
@@ -82,7 +84,6 @@ namespace MoneyVision.BusinessLogic.Core
                {
                     return new URegisterResp { Status = false, StatusMsg = "Email already exists" };
                }
-
 
                User user;
                var pass = LoginHelper.HashGen(data.Password);
@@ -137,7 +138,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new URegisterResp { Status = false };
                }
           }
-
+          
           internal HttpCookie Cookie(string loginEmail)
           {
                var apiCookie = new HttpCookie("X-KEY")
@@ -182,7 +183,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return apiCookie;
           }
-
+          
           internal UserMinimal UserCookie(string cookie)
           {
                Session session;
@@ -216,7 +217,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
-
+          
           internal UserMinimal UserCookie(string cookie, int workspaceId)
           {
                Session session;
@@ -260,7 +261,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
-
+          
           internal UProfileResp UserProfileAction(UProfileData data, UserMinimal currentUser)
           {
                var response = new UProfileResp();
@@ -319,8 +320,28 @@ namespace MoneyVision.BusinessLogic.Core
 
                return response;
           }
-     }
+          
+          internal void UserLogoutAction(UserMinimal currentUser)
+          {
+               Session session;
 
+               using (var db = new DatabaseContext())
+               {
+                    session = db.Sessions.FirstOrDefault(u => u.Id == currentUser.Id);
+                    
+                    db.Sessions.Remove(session);
+                    db.SaveChanges();
+               }
+
+               var apiCookie = new HttpCookie("X-KEY")
+               {
+                    Value = "",
+                    Expires = DateTime.Now.AddYears(-1)
+               };
+               HttpContext.Current.Response.Cookies.Add(apiCookie);
+
+          }
+     }
 }
 
 
