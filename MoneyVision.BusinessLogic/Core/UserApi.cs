@@ -70,6 +70,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new ULoginResp { Status = true };
                }
           }
+         
           public URegisterResp UserRegisterAction(URegisterData data)
           {
                User existingUser;
@@ -137,6 +138,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new URegisterResp { Status = false };
                }
           }
+          
           internal HttpCookie Cookie(string loginEmail)
           {
                var apiCookie = new HttpCookie("X-KEY")
@@ -181,6 +183,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return apiCookie;
           }
+          
           internal UserMinimal UserCookie(string cookie)
           {
                Session session;
@@ -214,6 +217,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
+          
           internal UserMinimal UserCookie(string cookie, int workspaceId)
           {
                Session session;
@@ -257,6 +261,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
+          
           internal UProfileResp UserProfileAction(UProfileData data, UserMinimal currentUser)
           {
                var response = new UProfileResp();
@@ -315,6 +320,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return response;
           }
+          
           internal void UserLogoutAction(UserMinimal currentUser)
           {
                Session session;
@@ -335,10 +341,7 @@ namespace MoneyVision.BusinessLogic.Core
                HttpContext.Current.Response.Cookies.Add(apiCookie);
 
           }
-
-
      }
-
 }
 
 
