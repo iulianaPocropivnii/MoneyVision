@@ -73,6 +73,9 @@ namespace MoneyVision.BusinessLogic.Core
          
           public URegisterResp UserRegisterAction(URegisterData data)
           {
+               if (data.Username.Length < 3)
+                    return new URegisterResp { Status = false, StatusMsg = "Username should be at least 3 characters" };
+
                User existingUser;
 
                using (var db = new DatabaseContext())
