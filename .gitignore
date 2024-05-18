@@ -373,3 +373,5 @@ packages/
 *.log
 *.cache
 .idea/
+
+.env
