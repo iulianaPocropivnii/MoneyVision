@@ -413,6 +413,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkspacesController.cs" />
     <Compile Include="Extension\HttpContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -466,6 +467,7 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Workspaces\Index.cshtml" />
     <Content Include="Views\Logout\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
