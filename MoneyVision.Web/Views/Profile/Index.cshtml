@@ -7,7 +7,7 @@
 
 <div class="container mt-5 mb-5">
   <div id="profile-section" class="profile-section rounded p-5">  @Html.ValidationSummary(true)
-    @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form", @id = "ProfileForm" }))
+    @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form", @id = "UsersForm" }))
     {
       @Html.AntiForgeryToken()
       <div class="p-3 py-5">

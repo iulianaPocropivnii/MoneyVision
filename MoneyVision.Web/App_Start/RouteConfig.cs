@@ -85,6 +85,11 @@ namespace MoneyVision.Web
                     url: "{controller}/{action}/{id}",
                     defaults: new { controller = "Logout", action = "Index", id = UrlParameter.Optional }
                );
+               routes.MapRoute(
+                    name: "Users",
+                    url: "Workspaces/{workspaceId}/{controller}/{action}/{id}",
+                    defaults: new { controller = "Users", action = "Index", id = UrlParameter.Optional }
+               );
           }
      }
 }

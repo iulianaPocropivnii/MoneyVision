@@ -11,6 +11,8 @@ using MoneyVision.Domain.Entities.Workspace.Requests;
 using MoneyVision.Domain.Entities.Category.Responses;
 using MoneyVision.Domain.Entities.Category.Requests;
 
+using MoneyVision.Domain.Entities;
+using MoneyVision.Domain.Enums;
 namespace MoneyVision.BusinessLogic
 {
      public class SessionBL : ISession
@@ -69,6 +71,11 @@ namespace MoneyVision.BusinessLogic
           public void UserLogoutAction(UserMinimal currentUser)
           {
                this.userApi.UserLogoutAction(currentUser);
+          }
+
+          public GenericResp AddUserAction(UAddData data)
+          {
+               return this.userApi.AddUserAction(data);
           }
      }
 }
