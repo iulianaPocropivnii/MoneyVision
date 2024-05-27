@@ -7,21 +7,22 @@
 
 <div class="container mt-5 mb-5">
     <h1>Transactions</h1>
-    <div class="transactions-container">
+    <div class="transactions-list">
         <div>Id</div>
         <div>Amount</div>
         <div>Category</div>
         <div>Date</div>
+        <div></div>
+        <div></div>
         @foreach (var item in Model.Transactions)
         {
-            <div class="transaction-item">
                 <div>@item.Id</div>
                 <div>@item.Amount</div>
                 <div>@item.Category</div>
                 <div>@item.CreatedAt</div>
                 <div><button>Edit</button></div>
                 <div><button>Delete</button></div>
-            </div>
+    
         }
     </div>
 </div>

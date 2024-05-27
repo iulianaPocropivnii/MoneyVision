@@ -16,9 +16,7 @@ namespace MoneyVision.Web.Controllers
                     return RedirectToAction("Index", "Dashboard");
                }
 
-               var profile = System.Web.HttpContext.Current.GetMySessionObject();
-
-               TransactionsListData transactionsListData = new TransactionsListData { WorkspaceId = profile.WorkspaceId };
+               TransactionsListData transactionsListData = new TransactionsListData { WorkspaceId = workspaceId };
 
                var responseData = _session.TransactionsListAction(transactionsListData);
 

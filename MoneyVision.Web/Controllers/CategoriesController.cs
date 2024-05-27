@@ -17,7 +17,7 @@ namespace MoneyVision.Web.Controllers
 
             var profile = System.Web.HttpContext.Current.GetMySessionObject();
 
-            CategoriesListData categoriesListData = new CategoriesListData { WorkspaceId = profile.WorkspaceId };
+            CategoriesListData categoriesListData = new CategoriesListData { WorkspaceId = workspaceId };
 
             var responseData = _session.CategoriesListAction(categoriesListData);
 

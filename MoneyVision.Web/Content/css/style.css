@@ -1150,7 +1150,7 @@ justify-content: flex-start;
 # Transactions
 --------------------------------------------------------------*/
 
-.container {
+/*.container {
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 1rem;
@@ -1175,8 +1175,8 @@ justify-content: flex-start;
 }
 
 .transaction-item {
-    /* No additional styles needed for grid layout */
-}
+     No additional styles needed for grid layout 
+}*/
 
 
 /*--------------------------------------------------------------
