@@ -6,6 +6,9 @@ using MoneyVision.Domain.Entities.Transaction.Requests;
 using MoneyVision.Domain.Entities.Transaction.Responses;
 using MoneyVision.Domain.Entities.Workspace.Requests;
 using MoneyVision.Domain.Entities.Workspace.Response;
+using MoneyVision.Domain.Entities.Category.Requests;
+using MoneyVision.Domain.Entities.Category.Responses;
+
 
 namespace MoneyVision.BusinessLogic.Interfaces
 {
@@ -17,10 +20,9 @@ namespace MoneyVision.BusinessLogic.Interfaces
           UserMinimal GetUserByCookie(string apiCookieValue);
           UserMinimal GetUserByCookie(string apiCookieValue, int worksapceId);
           UProfileResp UserProfileAction(UProfileData data, UserMinimal _currentUser);
-          void UserLogoutAction(UserMinimal _currentUser);
-         
           TransactionsListResp TransactionsListAction(TransactionsListData data);
          
+          CategoriesListResp CategoriesListAction(CategoriesListData data);
           WorkspacesListResp WorkspacesListAction(WorkspacesListData data);
      }
 }

@@ -8,6 +8,9 @@ using MoneyVision.Domain.Entities.Transaction.Responses;
 using MoneyVision.Domain.Entities.Transaction.Requests;
 using MoneyVision.Domain.Entities.Workspace.Response;
 using MoneyVision.Domain.Entities.Workspace.Requests;
+using MoneyVision.Domain.Entities.Category.Responses;
+using MoneyVision.Domain.Entities.Category.Requests;
+
 namespace MoneyVision.BusinessLogic
 {
      public class SessionBL : ISession
@@ -15,12 +18,14 @@ namespace MoneyVision.BusinessLogic
           private readonly UserApi userApi;
           private readonly TransactionApi transactionApi;
           private readonly WorkspaceApi workspaceApi;
+        private readonly CategoriesApi categoriesApi;
 
           public SessionBL()
           {
                this.userApi = new UserApi();
                this.transactionApi = new TransactionApi();
                this.workspaceApi = new WorkspaceApi();
+               this.categoriesApi = new CategoriesApi();
           }
 
           public ULoginResp UserLoginAction(ULoginData _login)
@@ -35,7 +40,6 @@ namespace MoneyVision.BusinessLogic
           {
                return this.userApi.Cookie(loginCredential);
           }
-
           public UserMinimal GetUserByCookie(string apiCookieValue)
           {
                return this.userApi.UserCookie(apiCookieValue);
@@ -53,7 +57,10 @@ namespace MoneyVision.BusinessLogic
           {
                return this.transactionApi.TransactionsListAction(data);
           }
-
+          public CategoriesListResp CategoriesListAction(CategoriesListData data)
+          {
+               return this.categoriesApi.CategoriesListAction(data);
+          }
           public WorkspacesListResp WorkspacesListAction(WorkspacesListData data)
           {
                return this.workspaceApi.WorkspacesListAction(data);

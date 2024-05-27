@@ -216,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinesLogic.cs" />
+    <Compile Include="Core\CategoriesApi.cs" />
     <Compile Include="Core\TransactionApi.cs" />
     <Compile Include="Core\UserApi.cs" />
     <Compile Include="Core\WorkspaceApi.cs" />
