@@ -406,6 +406,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -466,6 +467,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Workspaces\Index.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Logout\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">

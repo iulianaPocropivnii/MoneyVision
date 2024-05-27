@@ -1,0 +1,25 @@
+﻿@model MoneyVision.Domain.Entities.Category.Responses.CategoriesListResp
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <h1>Categories</h1>
+    <div class="categories-container">
+        <div>Name</div>
+        @foreach (var item in Model.Categories)
+        {
+            <div class="categories-item">
+                <div>@item.Name</div>
+            
+                <div><button>Edit</button></div>
+                <div><button>Delete</button></div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
