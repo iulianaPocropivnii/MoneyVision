@@ -43,17 +43,19 @@
 <body>
      <div class="container">
           <h2>Gestionare Utilizatori</h2>
-          <form id="addUserForm">
+          @Html.ValidationSummary(true)
+          @using (Html.BeginForm("Index", "Users", FormMethod.Post, new { @class = "form", @id = "ProfileForm" }))
+          {
+               @Html.AntiForgeryToken()
                <div class="form-group">
-                    <label for="username">Nume Utilizator</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
+                    <label for="email">Nume Utilizator</label>
+                    <input type="text" class="form-control" id="email" name="Email" required>
                </div>
                <button type="submit" class="btn btn-primary">Adaugă</button>
-          </form>
+          }
           <hr>
           <h4>Utilizatori existenți</h4>
           <ul class="list-group" id="userList">
-               <!-- Utilizatorii vor fi adăugați aici -->
           </ul>
      </div>
 
@@ -76,16 +78,16 @@
                const li = document.createElement('li');
                li.className = 'list-group-item d-flex justify-content-between align-items-center';
                li.innerHTML = `
-                     <span>${username}</span>
-                     <div class="user-actions">
-                         <select class="custom-select">
-                             <option value="user">Viewer</option>
-                             <option value="user">Editor</option>
-                             <option value="admin">Admin</option>
-                         </select>
-                         <button class="btn btn-danger btn-sm" onclick="deleteUser(this)">Șterge</button>
-                     </div>
-                 `;
+                                    <span>${username}</span>
+                                    <div class="user-actions">
+                                        <select class="custom-select">
+                                            <option value="user">Viewer</option>
+                                            <option value="user">Editor</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteUser(this)">Șterge</button>
+                                    </div>
+                                `;
                userList.appendChild(li);
           }
 

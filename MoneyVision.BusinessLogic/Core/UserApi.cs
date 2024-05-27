@@ -13,6 +13,7 @@ using MoneyVision.Domain.Enums;
 using MoneyVision.Domain.Entities.Workspace;
 using MoneyVision.Domain.Entities.UserWorkspace;
 using System.Net;
+using MoneyVision.Domain.Entities;
 
 
 namespace MoneyVision.BusinessLogic.Core
@@ -343,6 +344,49 @@ namespace MoneyVision.BusinessLogic.Core
                };
                HttpContext.Current.Response.Cookies.Add(apiCookie);
 
+          }
+
+          internal GenericResp AddUserAction(UAddData data)
+          {
+               var validate = new EmailAddressAttribute();
+
+               if (!validate.IsValid(data.Email))
+               {
+                    return new GenericResp { Status = false, StatusMsg = "The email is invalid" };
+               }
+
+               using (var db = new DatabaseContext())
+               {
+                    var existingUser = db.Users.FirstOrDefault(u => u.Email == data.Email);
+                    if (existingUser == null)
+                    {
+                         return new GenericResp { Status = false, StatusMsg = "User does not exist" };
+                    }
+
+                    var existingWorkspace = db.Workspaces.FirstOrDefault(w => w.Id == data.WorkspaceId);
+                    if (existingWorkspace == null)
+                    {
+                         return new GenericResp { Status = false, StatusMsg = "Workspace does not exist" };
+                    }
+
+                    var userWorkspace = db.UserWorkspaces
+                        .FirstOrDefault(uw => uw.UserId == existingUser.Id && uw.WorkspaceId == data.WorkspaceId);
+                    if (userWorkspace != null)
+                    {
+                         return new GenericResp { Status = false, StatusMsg = "User is already in the workspace" };
+                    }
+
+                    var newUserWorkspace = new UserWorkspace
+                    {
+                         UserId = existingUser.Id,
+                         WorkspaceId = data.WorkspaceId,
+                         Level = data.Role,
+                    };
+                    db.UserWorkspaces.Add(newUserWorkspace);
+                    db.SaveChanges();
+
+                    return new GenericResp { Status = true, StatusMsg = "User added to the workspace successfully" };
+               }
           }
      }
 }
