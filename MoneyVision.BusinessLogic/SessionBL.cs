@@ -54,10 +54,13 @@ namespace MoneyVision.BusinessLogic
           {
                return this.userApi.UserProfileAction(_profile, _currentUser);
           }
-
           public TransactionsListResp TransactionsListAction(TransactionsListData data)
           {
                return this.transactionApi.TransactionsListAction(data);
+          }
+          public TransactionsCreateResp TransactionsCreateAction(TransactionsCreateData data)
+          {
+               return this.transactionApi.TransactionsCreateAction(data);
           }
           public CategoriesListResp CategoriesListAction(CategoriesListData data)
           {

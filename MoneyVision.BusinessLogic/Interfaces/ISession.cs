@@ -25,6 +25,7 @@ namespace MoneyVision.BusinessLogic.Interfaces
           void UserLogoutAction(UserMinimal _currentUser);
           GenericResp AddUserAction(UAddData data);
           TransactionsListResp TransactionsListAction(TransactionsListData data);
+          TransactionsCreateResp TransactionsCreateAction(TransactionsCreateData data);
           CategoriesListResp CategoriesListAction(CategoriesListData data);
           WorkspacesListResp WorkspacesListAction(WorkspacesListData data);
      }

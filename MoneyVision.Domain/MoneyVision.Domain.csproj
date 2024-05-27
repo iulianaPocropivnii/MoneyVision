@@ -219,8 +219,10 @@
     <Compile Include="Entities\Category\Requests\CategoriesListData.cs" />
     <Compile Include="Entities\Category\Responses\CategoriesListResp.cs" />
     <Compile Include="Entities\GenericResp.cs" />
+    <Compile Include="Entities\Transaction\Requests\TransactionsCreateData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsListData.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionDto.cs" />
+    <Compile Include="Entities\Transaction\Responses\TransactionsCreateResp.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionsListResp.cs" />
     <Compile Include="Entities\Transaction\Transaction.cs" />
     <Compile Include="Entities\UserWorkspace\UserWorkspace.cs" />

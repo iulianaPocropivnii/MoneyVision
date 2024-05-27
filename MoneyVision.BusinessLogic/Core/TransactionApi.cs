@@ -5,6 +5,7 @@ using System.Linq;
 using MoneyVision.BusinessLogic.DBModel;
 using MoneyVision.Domain.Entities.Workspace;
 using System.Collections.Generic;
+using MoneyVision.Domain.Entities.Transaction;
 
 namespace MoneyVision.BusinessLogic.Core
 {
@@ -43,6 +44,28 @@ namespace MoneyVision.BusinessLogic.Core
                     .ToList();
 
                     return new TransactionsListResp { Status = true, Transactions = transactions };
+               }
+
+          }
+
+          internal TransactionsCreateResp TransactionsCreateAction(TransactionsCreateData data)
+          {
+               using (var db = new DatabaseContext())
+               {
+                    Transaction transaction;
+
+                    transaction = db.Transactions.Create();
+
+                    transaction.CreatedAt = data.CreatedAt;
+                    transaction.CategoryId = data.CategoryId;
+                    transaction.Amount = data.Amount;
+                    transaction.WorkspaceId = data.WorkspaceId;
+                    transaction.Description = data.Description;
+
+                    var transactions = db.Transactions.Add(transaction);
+                    db.SaveChanges();
+
+                    return new TransactionsCreateResp { Status = true };
                }
 
           }

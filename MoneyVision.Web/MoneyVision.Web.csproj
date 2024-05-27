@@ -470,6 +470,7 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Logout\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
