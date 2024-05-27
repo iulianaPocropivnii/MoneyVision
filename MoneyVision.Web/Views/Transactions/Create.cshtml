@@ -1,0 +1,29 @@
+﻿@model MoneyVision.Domain.Entities.Category.Responses.CategoriesListResp
+
+@{
+     ViewBag.Title = "Create";
+     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+     <h1>Create transaction</h1>
+
+     <form method="post" action="@ViewBag.FormAction">
+          <input name="Amount" type="number" placeholder="Amount" required />
+          <br />
+          <select name="CategoryId" required>
+               @foreach (var item in Model.Categories)
+               {
+                    <option value="@item.Id">
+                         @item.Name
+                    </option>
+               }
+          </select>
+          <br />
+          <input name="CreatedAt" type="datetime-local" required />
+          <br />
+          <textarea name="Description"></textarea>
+          <br />
+          <button type="submit">Create</button>
+     </form>
+</div>

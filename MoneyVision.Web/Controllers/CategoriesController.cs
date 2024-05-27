@@ -15,8 +15,6 @@ namespace MoneyVision.Web.Controllers
                 return RedirectToAction("Index", "Dashboard");
             }
 
-            var profile = System.Web.HttpContext.Current.GetMySessionObject();
-
             CategoriesListData categoriesListData = new CategoriesListData { WorkspaceId = workspaceId };
 
             var responseData = _session.CategoriesListAction(categoriesListData);
