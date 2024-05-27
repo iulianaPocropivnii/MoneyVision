@@ -43,21 +43,18 @@
 <body>
      <div class="container">
           <h2>Gestionare Utilizatori</h2>
-          @Html.ValidationSummary(true)
-          @using (Html.BeginForm("Index", "Users", FormMethod.Post, new { @class = "form", @id = "ProfileForm" }))
-          {
-               @Html.AntiForgeryToken()
+          <form action="@ViewBag.FormAction" method="post">
                <div class="form-group">
                     <label for="email">Nume Utilizator</label>
                     <input type="text" class="form-control" id="email" name="Email" required>
                </div>
                <button type="submit" class="btn btn-primary">Adaugă</button>
-          }
-          <hr>
-          <h4>Utilizatori existenți</h4>
-          <ul class="list-group" id="userList">
-          </ul>
-     </div>
+               </form>
+               <hr>
+               <h4>Utilizatori existenți</h4>
+               <ul class="list-group" id="userList">
+               </ul>
+</div>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>

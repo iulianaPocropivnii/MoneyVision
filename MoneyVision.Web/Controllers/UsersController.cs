@@ -18,7 +18,7 @@ namespace MoneyVision.Web.Controllers
           }
 
           [HttpGet]
-          public ActionResult Index()
+          public ActionResult Index(int workspaceId)
           {
                SessionStatus();
 
@@ -29,17 +29,24 @@ namespace MoneyVision.Web.Controllers
 
                var profile = System.Web.HttpContext.Current.GetMySessionObject();
 
+               ViewBag.WorkspaceId = workspaceId;
+               ViewBag.FormAction = "/Workspaces/"+workspaceId+"/Users/Index";
                return View(profile);
+
+
           }
 
           [HttpPost]
-          public ActionResult AddUserToWorkspace(UAddData data)
+          public ActionResult Index(int workspaceId, UAddData data)
           {
                SessionStatus();
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                {
-                    return RedirectToAction("Index", "Login");
+                    return Redirect("/Workspaces/" + workspaceId + "/Users/Index");
                }
+
+               data.Role = UserRole.Viewer;
+               data.WorkspaceId = workspaceId;
 
                var response = sessionBL.AddUserAction(data);
 
@@ -52,7 +59,7 @@ namespace MoneyVision.Web.Controllers
                     ViewBag.Message = response.StatusMsg;
                }
 
-               return View();
+               return Redirect("/Workspaces/" + workspaceId + "/Users/Index");
           }
      }
 }
