@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MoneyVision.Domain.Entities.User.Responses.UListResp
+@using MoneyVision.Domain.Enums
+@{
      ViewBag.Title = "Index";
      Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
@@ -44,69 +46,67 @@
      <div class="container">
           <h2>Gestionare Utilizatori</h2>
           <form action="@ViewBag.FormAction" method="post">
+               @if (ViewBag.Message != null)
+               {
+                    <div>@ViewBag.Message</div>
+               }
                <div class="form-group">
                     <label for="email">Nume Utilizator</label>
                     <input type="text" class="form-control" id="email" name="Email" required>
                </div>
                <button type="submit" class="btn btn-primary">Adaugă</button>
-               </form>
-               <hr>
-               <h4>Utilizatori existenți</h4>
-               <ul class="list-group" id="userList">
-               </ul>
-</div>
+          </form>
+          <hr>
+          <h4>Utilizatori existenți</h4>
+          <ul class="list-group" id="userList">
+               @foreach (var user in Model.Users)
+               {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                         <span>@user.Email (@user.Email)</span>
+                         <div class="user-actions">
+                              <select class="custom-select" onchange="changeRole(this, '@user.Id')">
+                                   <option value="Viewer" @(user.Level == UserRole.Viewer ? "selected" : "")>Viewer</option>
+                                   <option value="Editor" @(user.Level == UserRole.Editor ? "selected" : "")>Editor</option>
+                                   <option value="Admin" @(user.Level == UserRole.Admin ? "selected" : "")>Admin</option>
+                              </select>
+                              <button class="btn btn-danger btn-sm" onclick="deleteUser(this, '@user.Id')">Șterge</button>
+                         </div>
+                    </li>
+               }
+          </ul>
+     </div>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
      <script>
-          document.getElementById('addUserForm').addEventListener('submit', function (event) {
-               event.preventDefault();
-               const username = document.getElementById('username').value;
-               if (username) {
-                    addUser(username);
-                    this.reset();
-               }
-          });
-
-          const userList = document.getElementById('userList');
-
-          function addUser(username) {
-               const li = document.createElement('li');
-               li.className = 'list-group-item d-flex justify-content-between align-items-center';
-               li.innerHTML = `
-                                    <span>${username}</span>
-                                    <div class="user-actions">
-                                        <select class="custom-select">
-                                            <option value="user">Viewer</option>
-                                            <option value="user">Editor</option>
-                                            <option value="admin">Admin</option>
-                                        </select>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteUser(this)">Șterge</button>
-                                    </div>
-                                `;
-               userList.appendChild(li);
+          function deleteUser(button, userId) {
+               $.ajax({
+                    url: `/Users/Delete/${userId}`,
+                    type: 'POST',
+                    success: function (result) {
+                         if (result.success) {
+                              const li = button.closest('li');
+                              li.remove();
+                         } else {
+                              alert(result.message);
+                         }
+                    }
+               });
           }
 
-          function deleteUser(button) {
-               const li = button.closest('li');
-               userList.removeChild(li);
-          }
-
-          function changeRole(select) {
-               const usernameSpan = select.closest('li').querySelector('span');
+          function changeRole(select, userId) {
                const newRole = select.value;
-               usernameSpan.dataset.role = newRole;
-               // Opțional: actualizează afișarea sau starea utilizatorului dacă este necesar
+               $.ajax({
+                    url: `/Users/ChangeRole/${userId}`,
+                    type: 'POST',
+                    data: { role: newRole },
+                    success: function (result) {
+                         if (!result.success) {
+                              alert(result.message);
+                         }
+                    }
+               });
           }
-
-          document.getElementById('userList').addEventListener('change', function (event) {
-               if (event.target.classList.contains('custom-select')) {
-                    changeRole(event.target);
-               }
-          });
      </script>
 </body>
-
-
-

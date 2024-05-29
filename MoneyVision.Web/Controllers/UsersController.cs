@@ -4,6 +4,7 @@ using MoneyVision.Domain.Entities.User.Responses;
 using MoneyVision.Domain.Entities.User.Requests;
 using MoneyVision.Domain.Enums;
 using MoneyVision.Web.Extension;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MoneyVision.Web.Controllers
@@ -28,12 +29,12 @@ namespace MoneyVision.Web.Controllers
                }
 
                var profile = System.Web.HttpContext.Current.GetMySessionObject();
+               var data = new UListData { WorkspaceId = workspaceId, UserId = profile.Id};
+               var response = sessionBL.UsersListAction(data);
 
                ViewBag.WorkspaceId = workspaceId;
-               ViewBag.FormAction = "/Workspaces/"+workspaceId+"/Users/Index";
-               return View(profile);
-
-
+               ViewBag.FormAction = "/Workspaces/" + workspaceId + "/Users/Index";
+               return View(response);
           }
 
           [HttpPost]
