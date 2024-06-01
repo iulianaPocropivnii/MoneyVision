@@ -14,10 +14,14 @@ using MoneyVision.Domain.Entities.Workspace;
 using MoneyVision.Domain.Entities.UserWorkspace;
 using System.Net;
 using MoneyVision.Domain.Entities;
+using System.Collections.Generic;
+using MoneyVision.Domain.Entities.Category.Requests;
+using System.Web.UI.WebControls;
+using MoneyVision.Domain.Entities.Transaction.Responses;
 
 
 namespace MoneyVision.BusinessLogic.Core
-{ 
+{
      public class UserApi
      {
           internal ULoginResp UserLoginAction(ULoginData data)
@@ -71,7 +75,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new ULoginResp { Status = true };
                }
           }
-         
+
           public URegisterResp UserRegisterAction(URegisterData data)
           {
                if (data.Username.Length < 3)
@@ -119,7 +123,7 @@ namespace MoneyVision.BusinessLogic.Core
                     db.SaveChanges();
                }
 
-               UserWorkspace userWorkspace; 
+               UserWorkspace userWorkspace;
 
                using (var db = new DatabaseContext())
                {
@@ -142,7 +146,7 @@ namespace MoneyVision.BusinessLogic.Core
                     return new URegisterResp { Status = false };
                }
           }
-          
+
           internal HttpCookie Cookie(string loginEmail)
           {
                var apiCookie = new HttpCookie("X-KEY")
@@ -187,7 +191,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return apiCookie;
           }
-          
+
           internal UserMinimal UserCookie(string cookie)
           {
                Session session;
@@ -221,7 +225,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
-          
+
           internal UserMinimal UserCookie(string cookie, int workspaceId)
           {
                Session session;
@@ -265,7 +269,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return userminimal;
           }
-          
+
           internal UProfileResp UserProfileAction(UProfileData data, UserMinimal currentUser)
           {
                var response = new UProfileResp();
@@ -324,7 +328,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                return response;
           }
-          
+
           internal void UserLogoutAction(UserMinimal currentUser)
           {
                Session session;
@@ -332,7 +336,7 @@ namespace MoneyVision.BusinessLogic.Core
                using (var db = new DatabaseContext())
                {
                     session = db.Sessions.FirstOrDefault(u => u.Id == currentUser.Id);
-                    
+
                     db.Sessions.Remove(session);
                     db.SaveChanges();
                }
@@ -346,13 +350,13 @@ namespace MoneyVision.BusinessLogic.Core
 
           }
 
-          internal GenericResp AddUserAction(UAddData data)
+          internal UAddResp AddUserAction(UAddData data)
           {
                var validate = new EmailAddressAttribute();
 
                if (!validate.IsValid(data.Email))
                {
-                    return new GenericResp { Status = false, StatusMsg = "The email is invalid" };
+                    return new UAddResp { Status = false, StatusMsg = "The email is invalid" };
                }
 
                using (var db = new DatabaseContext())
@@ -360,20 +364,20 @@ namespace MoneyVision.BusinessLogic.Core
                     var existingUser = db.Users.FirstOrDefault(u => u.Email == data.Email);
                     if (existingUser == null)
                     {
-                         return new GenericResp { Status = false, StatusMsg = "User does not exist" };
+                         return new UAddResp { Status = false, StatusMsg = "User does not exist" };
                     }
 
                     var existingWorkspace = db.Workspaces.FirstOrDefault(w => w.Id == data.WorkspaceId);
                     if (existingWorkspace == null)
                     {
-                         return new GenericResp { Status = false, StatusMsg = "Workspace does not exist" };
+                         return new UAddResp { Status = false, StatusMsg = "Workspace does not exist" };
                     }
 
                     var userWorkspace = db.UserWorkspaces
                         .FirstOrDefault(uw => uw.UserId == existingUser.Id && uw.WorkspaceId == data.WorkspaceId);
                     if (userWorkspace != null)
                     {
-                         return new GenericResp { Status = false, StatusMsg = "User is already in the workspace" };
+                         return new UAddResp { Status = false, StatusMsg = "User is already in the workspace" };
                     }
 
                     var newUserWorkspace = new UserWorkspace
@@ -385,9 +389,38 @@ namespace MoneyVision.BusinessLogic.Core
                     db.UserWorkspaces.Add(newUserWorkspace);
                     db.SaveChanges();
 
-                    return new GenericResp { Status = true, StatusMsg = "User added to the workspace successfully" };
+                    return new UAddResp { Status = true, StatusMsg = "User added to the workspace successfully" };
                }
           }
+
+          internal UListResp UsersListAction(UListData data)
+          {
+               using (var context = new DatabaseContext())
+               {
+                    var users = (from u in context.Users
+                                join uw in context.UserWorkspaces on u.Id equals uw.UserId
+                                where uw.WorkspaceId == data.WorkspaceId
+                                where uw.UserId != data.UserId
+                                select new
+                                {
+                                     Level = uw.Level,
+                                     Id = uw.UserId,
+                                     WorkspaceId = uw.WorkspaceId,
+                                     Email = u.Email,
+                                }).ToList()
+                                .Select(x => new UserDto
+                                {
+                                     Level = x.Level,
+                                     Id = x.Id,
+                                     WorkspaceId = x.WorkspaceId,
+                                     Email = x.Email,
+                                })
+                    .ToList();
+
+                    return new UListResp { Users = users, Status = true };
+               }
+          }
+
      }
 }
 

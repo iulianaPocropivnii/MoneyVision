@@ -13,6 +13,7 @@ using MoneyVision.Domain.Entities.Category.Requests;
 
 using MoneyVision.Domain.Entities;
 using MoneyVision.Domain.Enums;
+using System.Collections.Generic;
 namespace MoneyVision.BusinessLogic
 {
      public class SessionBL : ISession
@@ -76,9 +77,14 @@ namespace MoneyVision.BusinessLogic
                this.userApi.UserLogoutAction(currentUser);
           }
 
-          public GenericResp AddUserAction(UAddData data)
+          public UAddResp AddUserAction(UAddData data)
           {
                return this.userApi.AddUserAction(data);
+          }
+
+          public UListResp UsersListAction(UListData data)
+          {
+               return this.userApi.UsersListAction(data);
           }
      }
 }

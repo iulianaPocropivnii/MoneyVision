@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MoneyVision.Domain.Entities.User.Responses
 {
-     public class UAddResp : GenericResp
+     public class UListResp : GenericResp
      {
+          public List<UserDto> Users { get; set; }
      }
 }
