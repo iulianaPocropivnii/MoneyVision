@@ -1,4 +1,8 @@
-﻿.sidebar-layout {
+﻿* {
+     color: black;
+}
+
+.sidebar-layout {
      height: 100vh;
      display: flex;
 }

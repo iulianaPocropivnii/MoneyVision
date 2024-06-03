@@ -6,6 +6,8 @@ using MoneyVision.BusinessLogic.DBModel;
 using MoneyVision.Domain.Entities.Workspace;
 using System.Collections.Generic;
 using MoneyVision.Domain.Entities.Transaction;
+using MoneyVision.Domain.Entities.User;
+using System.Data.Entity;
 
 namespace MoneyVision.BusinessLogic.Core
 {
@@ -48,6 +50,21 @@ namespace MoneyVision.BusinessLogic.Core
 
           }
 
+          internal TransactionItemResp TransactionItemAction(TransactionItemData data)
+          {
+               Transaction transaction;
+
+               using (var db = new DatabaseContext())
+               {
+                    transaction = db.Transactions.FirstOrDefault(t => t.WorkspaceId == data.WorkspaceId && t.Id == data.Id);
+               }
+
+               if (transaction == null)
+                    return new TransactionItemResp { Status = false, StatusMsg = "Transaction not found" };
+
+               return new TransactionItemResp { Status = true, Transaction = transaction };
+          }
+
           internal TransactionsCreateResp TransactionsCreateAction(TransactionsCreateData data)
           {
                using (var db = new DatabaseContext())
@@ -66,6 +83,31 @@ namespace MoneyVision.BusinessLogic.Core
                     db.SaveChanges();
 
                     return new TransactionsCreateResp { Status = true };
+               }
+
+          }
+
+          internal TransactionsUpdateResp TransactionsUpdateAction(TransactionsUpdateData data)
+          {
+               using (var db = new DatabaseContext())
+               {
+                    Transaction transaction = db.Transactions.FirstOrDefault(t => t.WorkspaceId == data.WorkspaceId && t.Id == data.Id);
+
+                    if (transaction == null)
+                    {
+                         return new TransactionsUpdateResp { StatusMsg = "Transaction Not Found", Status = false };
+                    }
+
+                    transaction.CreatedAt = data.CreatedAt;
+                    transaction.CategoryId = data.CategoryId;
+                    transaction.Amount = data.Amount;
+                    transaction.Description = data.Description;
+
+                    db.Entry(transaction).State = EntityState.Modified;
+
+                    db.SaveChanges();
+
+                    return new TransactionsUpdateResp { Status = true };
                }
 
           }
