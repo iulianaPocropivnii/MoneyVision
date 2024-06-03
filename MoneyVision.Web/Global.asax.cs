@@ -18,7 +18,7 @@ namespace MoneyVision.Web
           {
                // Note: replace this stupid path with path of your .env file, running with ISS Express changes current directory so can't use relative path
                // Maybe will fix it later
-               Env.Load("D:\\UTM\\Semestre\\Semestrul_4\\Proiect de an\\MoneyVision\\MoneyVision.Web\\.env");
+               Env.Load("C:\\Users\\danie\\OneDrive\\Desktop\\utm\\tweb\\proiect\\.env");
 
                var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 

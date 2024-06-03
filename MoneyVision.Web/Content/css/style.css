@@ -661,8 +661,9 @@ section {
 /*--------------------------------------------------------------
 # Features
 --------------------------------------------------------------*/
+
 .features .row+.row {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .features h2 {
@@ -672,6 +673,7 @@ section {
     color:black;
 }
 .features h3 {
+   
     font-weight: bold;
     font-size: 20px;
     color:black;
@@ -691,20 +693,21 @@ section {
   padding-right: 4px;
   color: #68A4C4;
 }
+
 .features p:last-child {
   margin-bottom: 0;
 }
 
 .features .icon-box {
-    padding: 30px;
     position: relative;
     overflow: hidden;
-    margin: 0 0 40px 0;
+    margin: 0 0 10px 0;
     background: #fff;
     box-shadow: 0 5px 26px 0 rgba(68, 88, 144, 0.14);
     transition: all 0.3s ease-in-out;
     text-align: center;
     border: 1px solid #fff;
+
 }
 
 .features .icon {
@@ -745,7 +748,7 @@ section {
     top: 0;
     right: 0;
     max-width: 32%;
-    margin-top: 125%;
+    margin-top: 140%;
     margin-right: 15%;
 }
 
@@ -995,7 +998,7 @@ align-items: center;
     margin-right: 100px; 
     display: flex; 
     flex-direction: column; 
-justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .workspace-container h1 {
@@ -1033,12 +1036,12 @@ justify-content: flex-start;
     display: block;
     padding: 10px 20px;
     margin-bottom: 5px;
+    margin-top:15px;
     color: black;
     background-color: #AACBE0;
     border-radius: 5px;
     font-weight: bold;
-    height: 50px;
-    width: 210px;
+ 
 }
 
  /*--------------------------------------------------------------
@@ -1101,61 +1104,74 @@ justify-content: flex-start;
 /*--------------------------------------------------------------
 # Profile
 --------------------------------------------------------------*/
-.container {
+/*.container {
     max-width: 1000px; 
     margin: 0 auto; 
     color:black;
 }
 
 #profile-section {
-    background-color: #f0f0f0; 
     border-radius: 5px; 
     padding: 20px; 
     height:600px;
 }
+*/
+
+.text-right {
+    text-align: center;
+    color: black;
+    font-family: 'Montserrat';
+}
 
 .profile-info {
-    display: flex; /* Enable flexbox for side-by-side image and content */
-    /*align-items: center; /* Align content vertically within profile-info */
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat';
+    color:black;
 }
 
 .profile-image {
-    width: 150px; /* Adjust image width if needed */
-    height: 150px; /* Adjust image height if needed */
-    border-radius: 50%; /* Round the image */
-    margin-right: 20px; /* Add some spacing between image and content */
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    margin-right: 20px;  
 }
 
 .profile-content {
     flex: 1;
     margin-bottom: 40px;
+    font-family: 'Montserrat';
+    color:black;
 }
 
     .profile-content h4 {
-        margin-bottom: 10px; 
-    
+        margin-bottom: 10px;
+        color: black;
+        font-family: 'Montserrat';
     }
- 
+
 .profile-button {
-    margin-top: 10px; 
-    float: left; 
+    margin-top: 10px;
+    float: left;
+    font-family: 'Montserrat';
 }
 
 .text-center {
-    text-align: center; 
-    color:black;
+    text-align: center;
+
+    font-family: 'Montserrat';
+   
 }
 
 /*--------------------------------------------------------------
 # Transactions
 --------------------------------------------------------------*/
-
 /*.container {
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 1rem;
 }
-
+*/
     .container h1 {
         margin-bottom: 1rem;
     }
@@ -1174,19 +1190,46 @@ justify-content: flex-start;
     grid-gap: 5px; 
 }
 
-.transaction-item {
-     No additional styles needed for grid layout 
-}*/
+/*--------------------------------------------------------------
+# Category
+--------------------------------------------------------------*/
+/*.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+    */
 
+
+.categories-list div button {
+    background-color: #007bff; 
+    color: #fff; 
+    border: 1px solid #007bff; 
+    border-radius: 4px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+}
+
+.categories-list div {
+    
+    margin-left:80px;
+    margin-bottom: 10px;
+    font-family:'Montserrat';
+    color:black;
+}
+
+    .categories-list div button:hover {
+        background-color: #0069d9;
+    }
 
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-    #footer {
-  background: #0b212d;
-  padding: 0 0 30px 0;
-  color: #fff;
-  font-size: 14px;
+#footer {
+    background: #0b212d;
+    padding: 0 0 30px 0;
+    color: #fff;
+    font-size: 14px;
 }
 
 #footer .footer-newsletter {
@@ -1342,7 +1385,9 @@ justify-content: flex-start;
 
 #footer .copyright {
   text-align: center;
+  color:white;
   padding-top: 30px;
+  
 }
 
 #footer .credits {
