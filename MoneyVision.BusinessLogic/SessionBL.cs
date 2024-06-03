@@ -21,7 +21,7 @@ namespace MoneyVision.BusinessLogic
           private readonly UserApi userApi;
           private readonly TransactionApi transactionApi;
           private readonly WorkspaceApi workspaceApi;
-        private readonly CategoriesApi categoriesApi;
+          private readonly CategoriesApi categoriesApi;
 
           public SessionBL()
           {
@@ -67,7 +67,7 @@ namespace MoneyVision.BusinessLogic
           {
                return this.categoriesApi.CategoriesListAction(data);
           }
-          public WorkspacesListResp WorkspacesListAction(WorkspacesListData data)
+        public WorkspacesListResp WorkspacesListAction(WorkspacesListData data)
           {
                return this.workspaceApi.WorkspacesListAction(data);
           }
@@ -80,6 +80,11 @@ namespace MoneyVision.BusinessLogic
           public UAddResp AddUserAction(UAddData data)
           {
                return this.userApi.AddUserAction(data);
+          }
+
+          public GenericResp AddCategoryAction(CategoryAddData data)
+          {
+               return this.categoriesApi.AddCategoryAction(data);
           }
 
           public UListResp UsersListAction(UListData data)

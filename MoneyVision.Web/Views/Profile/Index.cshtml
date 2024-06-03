@@ -1,39 +1,51 @@
 ﻿@model MoneyVision.Domain.Entities.User.UserMinimal
 
 @{
-     ViewBag.Title = "Index";
-     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
-
-<div class="container mt-5 mb-5">
-  <div id="profile-section" class="profile-section rounded p-5">  @Html.ValidationSummary(true)
-    @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form", @id = "UsersForm" }))
-    {
-      @Html.AntiForgeryToken()
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-          <h4 class="text-right">Profile Settings</h4>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <label class="labels">Username</label>
-            <input name="NewUsername" type="text" class="form-control" placeholder="Enter username" value="@Model.Username" />
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-md-12 mb-4">
-            <label class="labels">Current password</label>
-            <input name="CurrentPassword" type="password" class="form-control" placeholder="Enter your current password" />
-          </div>
-          <div class="col-md-12 ">
-            <label class="labels">New password</label>
-            <input name="NewPassword" type="password" class="form-control" placeholder="Enter your new password" />
-          </div>
-        </div>
-        <div class="mt-4 text-center">
-          <button type="submit" class="btn btn-primary profile-button">Save Profile</button>
-        </div>
-      </div>
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
-  </div>
+
+</style>
+<div class="container mt-5 mb-5">
+    <div id="profile-section" class="profile-section rounded p-5">
+        @Html.ValidationSummary(true)
+        @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form", @id = "UsersForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels" style="color: black;">Username</label>
+                        <input name="NewUsername" type="text" class="form-control" placeholder="Enter username" value="@Model.Username" />
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-4">
+                        <label class="labels" style="color: black;">Current password</label>
+                        <input name="CurrentPassword" type="password" class="form-control" placeholder="Enter your current password" />
+                    </div>
+                    <div class="col-md-12 ">
+                        <label class="labels" style="color: black;">New password</label>
+                        <input name="NewPassword" type="password" class="form-control" placeholder="Enter your new password" />
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary profile-button">Save Profile</button>
+                </div>
+            </div>
+        }
+    </div>
 </div>

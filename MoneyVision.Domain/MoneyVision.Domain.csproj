@@ -217,7 +217,9 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category\Category.cs" />
     <Compile Include="Entities\Category\Requests\CategoriesListData.cs" />
+    <Compile Include="Entities\Category\Requests\CategoryAddData.cs" />
     <Compile Include="Entities\Category\Responses\CategoriesListResp.cs" />
+    <Compile Include="Entities\Category\Responses\CategoryAddResp.cs" />
     <Compile Include="Entities\GenericResp.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsCreateData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsListData.cs" />

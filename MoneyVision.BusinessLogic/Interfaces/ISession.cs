@@ -28,6 +28,7 @@ namespace MoneyVision.BusinessLogic.Interfaces
           TransactionsListResp TransactionsListAction(TransactionsListData data);
           TransactionsCreateResp TransactionsCreateAction(TransactionsCreateData data);
           CategoriesListResp CategoriesListAction(CategoriesListData data);
+          GenericResp AddCategoryAction(CategoryAddData data);
           WorkspacesListResp WorkspacesListAction(WorkspacesListData data);
           UListResp UsersListAction(UListData data);
      }
