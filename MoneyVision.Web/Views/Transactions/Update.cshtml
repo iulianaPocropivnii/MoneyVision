@@ -1,0 +1,38 @@
+﻿@model MoneyVision.Domain.Entities.Transaction.Responses.TransactionItemResp
+
+@{
+     ViewBag.Title = "Create";
+     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+     <meta name="viewport" content="width=device-width" />
+     <title>Update</title>
+</head>
+<body>
+     class="container mt-5 mb-5">
+     <h1>Update transaction</h1>
+
+     <form method="post" action="@ViewBag.FormAction">
+          <input name="Amount" type="number" placeholder="Amount" value="@Model.Transaction.Amount" required />
+          <br />
+          <select name="CategoryId" required>
+               @foreach (var item in Model.Categories)
+               {
+                    <option value="@item.Id" @(Model.Transaction.CategoryId == item.Id ? "selected" : "") >
+                         @item.Name
+                    </option>
+               }
+          </select>
+          <br />
+          <input name="CreatedAt" type="datetime-local" value="@Model.Transaction.CreatedAt.ToString("yyyy-MM-ddTHH:mm")" required />
+          <br />
+          <textarea name="Description" value="@Model.Transaction.Description"></textarea>
+          <br />
+          <button type="submit">Update</button>
+     </form>
+</body>
+</html>
