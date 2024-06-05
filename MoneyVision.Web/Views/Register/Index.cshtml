@@ -1,82 +1,54 @@
-﻿
-@{
+﻿@{
      ViewBag.Title = "Index";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <title>Sign Up V3</title>
+<div class="limiter">
+     <div class="container-login100">
+          <div class="wrap-login100">
+               @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
+               {
+                    @Html.AntiForgeryToken()
+                    <span class="login100-form-title p-b-35 p-t-27">
+                         Sign up
+                    </span>
 
-     <style>
-          .container-login100 {
-               width: 100%; /* Adjust as needed */
-          }
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                         <input class="input100" type="text" name="Username" style="margin-left: 20px;" placeholder="Username">
+                         <span class="focus-input100">
+                              <i class="fas fa-user"  style="margin-top: 10px;"></i>
+                         </span>
+                    </div>
 
-         .wrap-login100 {
-             width: 30%;
-             height: 10%;
-             margin: auto; /* Center the login box horizontally */
-             background-color: #142634; /* Blue background color */
-             font-family: 'Montserrat', sans-serif; /* Montserrat font */
-         }
 
-          .login100-form {
-               height: 100%;
-          }
-     </style>
-</head>
-<body>
+                    <div class="wrap-input100 validate-input" data-validate="Enter email">
+                         <input class="input100" type="email" name="Email" style="margin-left: 20px;" placeholder="Email">
+                         <span class="focus-input100">
+                              <i class="fas fa-envelope" style="margin-top: 10px;"></i>
+                         </span>
+                    </div>
 
-     <div class="limiter">
-          <div class="container-login100">
-               <div class="wrap-login100">
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                         <input class="input100" type="password" name="Password" style="margin-left: 20px;" placeholder="Password">
+                         <span class="focus-input100">
+                              <i class="fas fa-unlock-alt" style="margin-top: 10px;"></i>
+                         </span>
+                    </div>
+
+                    <div class="contact100-form-checkbox" style=" margin-left: -5px">
+                         <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                         <label class="label-checkbox100" for="ckb1" style="margin-left: 5px">
+                              Remember me
+                         </label>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                         <button class="login100-form-btn">
+                              Sign Up
+                         </button>
+                    </div>
+
                     @Html.ValidationSummary(true)
-                    @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
-                    {
-                         @Html.AntiForgeryToken()
-                         <form class="login100-form validate-form">
-                              <span class="login100-form-logo">
-                                   <i class="zmdi zmdi-landscape"></i>
-                              </span>
-
-                              <span class="login100-form-title p-b-35 p-t-27">
-                                   Sign up
-                              </span>
-
-
-                              <div class="wrap-input100 validate-input" data-validate="Enter username">
-                                   <input class="input100" type="text" name="Username" placeholder="Username">
-                                   <span class="focus-input100" data-placeholder="&#xf207;"></span>
-                              </div>
-
-                              <div class="wrap-input100 validate-input" data-validate="Enter email">
-                                   <input class="input100" type="text" name="Email" placeholder="Email">
-                                   <span class="focus-input100" data-placeholder="&#xf207;"></span>
-                              </div>
-
-                              <div class="wrap-input100 validate-input" data-validate="Enter password">
-                                   <input class="input100" type="password" name="Password" placeholder="Password">
-                                   <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                              </div>
-
-                              <div class="contact100-form-checkbox">
-                                   <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                   <label class="label-checkbox100" for="ckb1">
-                                        Remember me
-                                   </label>
-                              </div>
-
-                              <div class="container-login100-form-btn">
-                                   <button class="login100-form-btn">
-                                        Sign Up
-                                   </button>
-                              </div>
-                         </form>
-                    }
-               </div>
+               }
           </div>
      </div>
+</div>
 
-</body>
-</html>

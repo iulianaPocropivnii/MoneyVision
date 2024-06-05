@@ -38,7 +38,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                     if (result == null)
                     {
-                         return new ULoginResp { Status = false, StatusMsg = "The Username or Password is Incorrect" };
+                         return new ULoginResp { Status = false, StatusMsg = "The username or password is incorrect" };
                     }
 
                     using (var todo = new DatabaseContext())
@@ -61,7 +61,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                     if (result == null)
                     {
-                         return new ULoginResp { Status = false, StatusMsg = "The Username or Password is Incorrect" };
+                         return new ULoginResp { Status = false, StatusMsg = "The username or password is incorrect" };
                     }
 
                     using (var todo = new DatabaseContext())
@@ -78,11 +78,20 @@ namespace MoneyVision.BusinessLogic.Core
 
           public URegisterResp UserRegisterAction(URegisterData data)
           {
-               if (data.Username.Length < 3)
+               if (data.Username == null)
+                    return new URegisterResp { Status = false, StatusMsg = "Write username" };
+               else if (data.Email == null)
+                    return new URegisterResp { Status = false, StatusMsg = "Write email" };
+               else if (data.Password == null)
+                    return new URegisterResp { Status = false, StatusMsg = "Write password" };
+               else if (data.Username.Length < 3)
                     return new URegisterResp { Status = false, StatusMsg = "Username should be at least 3 characters" };
 
-               User existingUser;
+               var validate = new EmailAddressAttribute();
+               if (!validate.IsValid(data.Email))
+                    return new URegisterResp { Status = false, StatusMsg = "Invalid email format" };
 
+               User existingUser;
                using (var db = new DatabaseContext())
                {
                     existingUser = db.Users.FirstOrDefault(u => u.Email == data.Email);
@@ -335,7 +344,7 @@ namespace MoneyVision.BusinessLogic.Core
 
                using (var db = new DatabaseContext())
                {
-                    session = db.Sessions.FirstOrDefault(u => u.Id == currentUser.Id);
+                    session = db.Sessions.FirstOrDefault(u => u.Email == currentUser.Email);
 
                     db.Sessions.Remove(session);
                     db.SaveChanges();
@@ -398,16 +407,16 @@ namespace MoneyVision.BusinessLogic.Core
                using (var context = new DatabaseContext())
                {
                     var users = (from u in context.Users
-                                join uw in context.UserWorkspaces on u.Id equals uw.UserId
-                                where uw.WorkspaceId == data.WorkspaceId
-                                where uw.UserId != data.UserId
-                                select new
-                                {
-                                     Level = uw.Level,
-                                     Id = uw.UserId,
-                                     WorkspaceId = uw.WorkspaceId,
-                                     Email = u.Email,
-                                }).ToList()
+                                 join uw in context.UserWorkspaces on u.Id equals uw.UserId
+                                 where uw.WorkspaceId == data.WorkspaceId
+                                 where uw.UserId != data.UserId
+                                 select new
+                                 {
+                                      Level = uw.Level,
+                                      Id = uw.UserId,
+                                      WorkspaceId = uw.WorkspaceId,
+                                      Email = u.Email,
+                                 }).ToList()
                                 .Select(x => new UserDto
                                 {
                                      Level = x.Level,

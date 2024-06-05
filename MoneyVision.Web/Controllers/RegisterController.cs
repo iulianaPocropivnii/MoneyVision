@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using MoneyVision.Web.Models;
+using MoneyVision.Domain.Entities.User.Responses;
 
 
 namespace MoneyVision.Web.Controllers
@@ -39,14 +40,14 @@ namespace MoneyVision.Web.Controllers
                     RegisterDateTime = DateTime.Now
                 };
 
-               var userRegister = _session.UserRegisterAction(data);
-                if (userRegister.Status)
+                URegisterResp userResp = _session.UserRegisterAction(data);
+                if (userResp.Status)
                 {
                      return RedirectToAction("Index", "Login");
                 }
                 else
                 {
-                     ModelState.AddModelError("", userRegister.StatusMsg);
+                     ModelState.AddModelError("", userResp.StatusMsg);
                      return View();
                 }
             }
