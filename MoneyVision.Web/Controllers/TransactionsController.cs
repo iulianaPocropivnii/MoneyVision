@@ -1,11 +1,17 @@
 ﻿using MoneyVision.Domain.Entities.Category.Requests;
 using MoneyVision.Domain.Entities.Transaction.Requests;
 using MoneyVision.Web.Extension;
-
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace MoneyVision.Web.Controllers
 {
+    public  class Parameters
+     {
+          public int workspaceId;
+          public int transactionId;
+     }
+
      public class TransactionsController : BaseController
      {
           // GET: Transactions
@@ -57,6 +63,46 @@ namespace MoneyVision.Web.Controllers
                var responseData = _session.TransactionsCreateAction(data);
 
                return Redirect("/Workspaces/" + workspaceId + "/Transactions/Index");
+          }
+
+          public ActionResult Update(int workspaceId, int id)
+          {
+               SessionStatus(workspaceId);
+               if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+               {
+                    return RedirectToAction("Index", "Login");
+               }
+
+               CategoriesListData categoriesListData = new CategoriesListData { WorkspaceId = workspaceId };
+
+               var categoriesDataResp = _session.CategoriesListAction(categoriesListData);
+
+               TransactionItemData transactionItemData = new TransactionItemData { Id = id, WorkspaceId = workspaceId };
+
+               var responseData = _session.TransactionItemAction(transactionItemData);
+               responseData.Categories = categoriesDataResp.Categories;
+
+               ViewBag.FormAction = "/Workspaces/" + workspaceId + "/Transactions/Update/" + id;
+
+               return View(responseData);
+          }
+
+          [HttpPost]
+          public ActionResult Update(int workspaceId, int id, TransactionsUpdateData data)
+          {
+               SessionStatus(workspaceId);
+               if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+               {
+                    return RedirectToAction("Index", "Login");
+               }
+
+               data.WorkspaceId = workspaceId;
+               data.Id = id;
+
+               var responseData = _session.TransactionsUpdateAction(data);
+
+               return Redirect("/Workspaces/" + workspaceId + "/Transactions/Index");
+
           }
      }
 }

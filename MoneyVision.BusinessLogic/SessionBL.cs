@@ -63,11 +63,21 @@ namespace MoneyVision.BusinessLogic
           {
                return this.transactionApi.TransactionsCreateAction(data);
           }
+          public TransactionsUpdateResp TransactionsUpdateAction(TransactionsUpdateData data)
+          {
+               return this.transactionApi.TransactionsUpdateAction(data);
+          }
+          public TransactionItemResp TransactionItemAction(TransactionItemData data)
+          {
+               return this.transactionApi.TransactionItemAction(data);
+          }
+
           public CategoriesListResp CategoriesListAction(CategoriesListData data)
           {
                return this.categoriesApi.CategoriesListAction(data);
           }
-        public WorkspacesListResp WorkspacesListAction(WorkspacesListData data)
+
+          public WorkspacesListResp WorkspacesListAction(WorkspacesListData data)
           {
                return this.workspaceApi.WorkspacesListAction(data);
           }
