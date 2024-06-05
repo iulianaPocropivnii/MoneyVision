@@ -1,4 +1,5 @@
-﻿using MoneyVision.Domain.Entities.Category.Requests;
+﻿using Microsoft.Ajax.Utilities;
+using MoneyVision.Domain.Entities.Category.Requests;
 using MoneyVision.Domain.Entities.Transaction.Requests;
 using MoneyVision.Web.Extension;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace MoneyVision.Web.Controllers
                SessionStatus(workspaceId);
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                {
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Login");
                }
 
                TransactionsListData transactionsListData = new TransactionsListData { WorkspaceId = workspaceId };
@@ -28,6 +29,7 @@ namespace MoneyVision.Web.Controllers
                var responseData = _session.TransactionsListAction(transactionsListData);
 
                ViewBag.CreateUrl = "/Workspaces/" + workspaceId + "/Transactions/Create";
+               ViewBag.WorkspaceId = workspaceId;
 
                return View(responseData);
           }
@@ -103,6 +105,24 @@ namespace MoneyVision.Web.Controllers
 
                return Redirect("/Workspaces/" + workspaceId + "/Transactions/Index");
 
+          }
+
+          [HttpDelete]
+          public ActionResult Delete(int workspaceId, int id)
+          {
+               SessionStatus(workspaceId);
+               if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+               {
+                    return RedirectToAction("Index", "Login");
+               }
+
+               TransactionDeleteItemData transactionsDeleteData = new TransactionDeleteItemData { WorkspaceId = workspaceId, Id = id };
+
+               var responseData = _session.TransactionDeleteItemAction(transactionsDeleteData);
+
+               if (responseData.Status == false) return Json(new { success = true, message = responseData.StatusMsg });
+
+               return Json(new { success = true });
           }
      }
 }

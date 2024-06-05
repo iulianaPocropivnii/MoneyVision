@@ -221,10 +221,12 @@
     <Compile Include="Entities\Category\Responses\CategoriesListResp.cs" />
     <Compile Include="Entities\Category\Responses\CategoryAddResp.cs" />
     <Compile Include="Entities\GenericResp.cs" />
+    <Compile Include="Entities\Transaction\Requests\TransactionDeleteItemData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionItemData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsUpdateData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsCreateData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsListData.cs" />
+    <Compile Include="Entities\Transaction\Responses\TransactionDeleteItemResp.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionDto.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionItemResp.cs" />
     <Compile Include="Entities\Transaction\Responses\TransactionsUpdateResp.cs" />
