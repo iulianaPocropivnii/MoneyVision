@@ -72,6 +72,11 @@ namespace MoneyVision.BusinessLogic
                return this.transactionApi.TransactionItemAction(data);
           }
 
+          public TransactionDeleteItemResp TransactionDeleteItemAction(TransactionDeleteItemData data)
+          {
+               return this.transactionApi.TransactionDeleteItemAction(data);
+          }
+
           public CategoriesListResp CategoriesListAction(CategoriesListData data)
           {
                return this.categoriesApi.CategoriesListAction(data);

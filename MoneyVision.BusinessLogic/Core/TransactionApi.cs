@@ -111,5 +111,23 @@ namespace MoneyVision.BusinessLogic.Core
                }
 
           }
+
+          internal TransactionDeleteItemResp TransactionDeleteItemAction(TransactionDeleteItemData data)
+          {
+               using (var db = new DatabaseContext())
+               {
+                    Transaction transaction = db.Transactions.FirstOrDefault(t => t.WorkspaceId == data.WorkspaceId && t.Id == data.Id);
+
+                    if (transaction == null)
+                    {
+                         return new TransactionDeleteItemResp { StatusMsg = "Transaction Not Found", Status = false };
+                    }
+
+                    db.Transactions.Remove(transaction);
+                    db.SaveChanges();
+
+                    return new TransactionDeleteItemResp { Status = true };
+               }
+          }
      }
 }
