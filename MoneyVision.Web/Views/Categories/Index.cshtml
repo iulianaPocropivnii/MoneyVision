@@ -15,14 +15,77 @@
             <input type="text" name="Name" placeholder="Enter category name" required>
         </form>
         <div></div>
+
         @foreach (var item in Model.Categories)
         {
-            <div>@item.Name</div>
-            <div><button>Edit</button></div>
-            <div><button>Delete</button></div>
+            <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
+             
+                    <form class="edit-category-form" data-id="@item.Id" id="edit-category-form-@(item.Id)">
+                        <input type="text" name="Name" value="@item.Name" required>
+                        <span class="validation-error"></span> <button data-category-id="@item.Id">Edit</button>
+                    </form>
+            </div>
+            <button class="delete-category-btn" data-category-id="@item.Id">Delete</button>
+            <div></div>
         }
     </div>
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        // Edit Category
+        $(".edit-category-name").hide(); // Initially hide edit input
+
+        $(".category-item").on("click", ".edit-category-btn", function (event) {
+            event.preventDefault(); // Prevent default form submission
+            $(this).siblings(".edit-category-name").show(); // Show edit input
+            $(this).hide(); // Hide edit button
+        });
+
+        $(".edit-category-form").submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var form = $(this);
+            var categoryId = form.attr("data-Id");
+            var updatedName = form.find("[name='Name']").val();
+            var workspaceId = @ViewBag.workspaceId; // Retrieve workspace ID from parent element
+
+            // Client-side validation (optional)
+            var validationError = "";
+            if (updatedName.trim() === "") {
+                validationError = "Please enter a name for the category.";
+            }
+
+            if (validationError) {
+                form.find(".validation-error").text(validationError); // Display validation error
+                return; // Prevent submitting form if validation fails
+            }
+
+            $.ajax({
+                url: "/Workspaces/" + workspaceId + "/Categories/UpdateCategory/" + categoryId,
+                type: "PUT",
+                data: { Name: updatedName, Id: categoryId }, // Ensure data matches CategoryUpdateData model
+                success: function (response) {
+                    if (response.success) {
+                        form.find(".edit-category-name").val(updatedName); // Update displayed name
+                        form.find(".edit-category-name").hide(); // Hide edit input
+                        form.find(".edit-category-btn").show(); // Show edit button
+                        form.find(".validation-error").text(""); // Clear validation error
+                        alert("Category updated successfully!");
+                    } else {
+                        alert("Error updating category: " + response.message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Error updating category: " + errorThrown);
+                }
+            });
+        });
+
+        // Delete Category (implementation not provided here)
+        // ...
+    });
+</script>

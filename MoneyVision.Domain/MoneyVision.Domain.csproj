@@ -218,8 +218,12 @@
     <Compile Include="Entities\Category\Category.cs" />
     <Compile Include="Entities\Category\Requests\CategoriesListData.cs" />
     <Compile Include="Entities\Category\Requests\CategoryAddData.cs" />
+    <Compile Include="Entities\Category\Requests\CategoryItemData.cs" />
+    <Compile Include="Entities\Category\Requests\CategoryUpdateData.cs" />
     <Compile Include="Entities\Category\Responses\CategoriesListResp.cs" />
     <Compile Include="Entities\Category\Responses\CategoryAddResp.cs" />
+    <Compile Include="Entities\Category\Responses\CategoryItemResp.cs" />
+    <Compile Include="Entities\Category\Responses\CategoryUpdateResp.cs" />
     <Compile Include="Entities\GenericResp.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionItemData.cs" />
     <Compile Include="Entities\Transaction\Requests\TransactionsUpdateData.cs" />

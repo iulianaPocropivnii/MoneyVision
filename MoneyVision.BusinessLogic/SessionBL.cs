@@ -96,7 +96,14 @@ namespace MoneyVision.BusinessLogic
           {
                return this.categoriesApi.AddCategoryAction(data);
           }
-
+          public CategoryUpdateResp CategoryUpdateAction(CategoryUpdateData data)
+          {
+            return this.categoriesApi.CategoryUpdateAction(data);
+          }
+          public CategoryItemResp CategoryItemAction(CategoryItemData data)
+          {
+            return this.categoriesApi.CategoryItemAction(data);
+          }
           public UListResp UsersListAction(UListData data)
           {
                return this.userApi.UsersListAction(data);
