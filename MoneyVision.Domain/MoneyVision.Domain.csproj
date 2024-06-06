@@ -262,9 +262,11 @@
     <Compile Include="Entities\Transaction\Transaction.cs" />
     <Compile Include="Entities\UserWorkspace\UserWorkspace.cs" />
     <Compile Include="Entities\User\Requests\UAddData.cs" />
+    <Compile Include="Entities\User\Requests\UDeleteData.cs" />
     <Compile Include="Entities\User\Requests\UListData.cs" />
     <Compile Include="Entities\User\Requests\UProfileData.cs" />
     <Compile Include="Entities\User\Responses\UAddResp.cs" />
+    <Compile Include="Entities\User\Responses\UDeleteResp.cs" />
     <Compile Include="Entities\User\Responses\UListResp.cs" />
     <Compile Include="Entities\User\Responses\ULoginResp.cs" />
     <Compile Include="Entities\User\Responses\UProfileResp.cs" />

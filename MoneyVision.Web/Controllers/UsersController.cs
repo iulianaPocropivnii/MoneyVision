@@ -6,6 +6,7 @@ using MoneyVision.Domain.Enums;
 using MoneyVision.Web.Extension;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using MoneyVision.Domain.Entities.Transaction.Requests;
 
 namespace MoneyVision.Web.Controllers
 {
@@ -62,5 +63,29 @@ namespace MoneyVision.Web.Controllers
 
                return Redirect("/Workspaces/" + workspaceId + "/Users/Index");
           }
+
+          [HttpDelete]
+          public ActionResult Delete(int workspaceId, int id)
+          {
+               SessionStatus(workspaceId);
+               if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+               {
+                    return RedirectToAction("Index", "Login");
+               }
+
+               UDeleteData uDeleteData = new UDeleteData { WorkspaceId = workspaceId, UserId = id };
+
+               var responseData = _session.UserDeleteAction(uDeleteData);
+
+               if (responseData.Status == false)
+               {
+                    return Json(new { success = false, message = responseData.StatusMsg });
+               }
+               else
+               {
+                    return Json(new { success = true });
+               }
+          }
+
      }
 }

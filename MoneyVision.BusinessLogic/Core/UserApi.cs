@@ -18,6 +18,8 @@ using System.Collections.Generic;
 using MoneyVision.Domain.Entities.Category.Requests;
 using System.Web.UI.WebControls;
 using MoneyVision.Domain.Entities.Transaction.Responses;
+using MoneyVision.Domain.Entities.Transaction.Requests;
+using MoneyVision.Domain.Entities.Transaction;
 
 
 namespace MoneyVision.BusinessLogic.Core
@@ -429,6 +431,28 @@ namespace MoneyVision.BusinessLogic.Core
                     return new UListResp { Users = users, Status = true };
                }
           }
+          internal UDeleteResp UserDeleteAction(UDeleteData data)
+          {
+               using (var db = new DatabaseContext())
+               {
+                    User user = db.Users.FirstOrDefault(u => u.Id == data.UserId);
+
+                    if (user == null)
+                    {
+                         return new UDeleteResp { StatusMsg = "User Not Found", Status = false };
+                    }
+
+                    UserWorkspace userworkspace = db.UserWorkspaces.FirstOrDefault(u => u.UserId == data.UserId && u.WorkspaceId == data.WorkspaceId);
+
+                    db.UserWorkspaces.Remove(userworkspace);
+
+                    db.SaveChanges();
+
+                    return new UDeleteResp { Status = true };
+               }
+          }
+
+
 
      }
 }

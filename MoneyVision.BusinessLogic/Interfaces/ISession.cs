@@ -34,5 +34,6 @@ namespace MoneyVision.BusinessLogic.Interfaces
           GenericResp AddCategoryAction(CategoryAddData data);
           WorkspacesListResp WorkspacesListAction(WorkspacesListData data);
           UListResp UsersListAction(UListData data);
+          UDeleteResp UserDeleteAction(UDeleteData data);
      }
 }
