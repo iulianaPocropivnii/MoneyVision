@@ -3,3 +3,63 @@
      ViewBag.Title = "Index";
      Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
+
+<main style="height: 100%;">
+     <div id="zeelix" style="width: 100%;height: 100%;"></div>
+</main>
+<script>
+     const token = "@ViewBag.token";
+
+     function _receiveMessage({ data }) {
+          switch (data.type) {
+               case "BOOTSTRAP_DONE":
+                    return _initDashboard();
+          }
+     }
+
+     let _config;
+     let _iframe;
+
+     const _listener = _receiveMessage;
+     function init (config) {
+          _config = config;
+          window.addEventListener('message', _listener, false);
+          return _mountIframe();
+     };
+     function changeFilters (filters) {
+          _iframe.contentWindow?.postMessage({ type: "CHANGE_FILTERS", filters }, '*');
+     };
+
+     function _mountIframe() {
+               return new Promise((resolve) => {
+               const iframe = document.createElement('iframe');
+               iframe.onload = () => resolve();
+               const { dashboardId } = _config;
+               iframe.src = `https://app.sumboard.io/embed/${dashboardId}`;
+               iframe.width = '100%';
+               iframe.height = '100%';
+               iframe.style.border = 'none';
+               iframe.style.outline = 'none';
+               _iframe = iframe;
+               const wrapper = document.getElementById('zeelix');
+               if (!wrapper)
+                    throw new Error('not found HTMLElement with id "zeelix"');
+               wrapper.appendChild(iframe);
+               });
+     }
+
+     function _initDashboard() {
+               _iframe.contentWindow?.postMessage({ type: "INIT_IFRAME", config: _config }, '*');
+     }
+
+          console.log({
+               token,
+               dashboardId: "Czdhr9zpgjwnq"
+          })
+
+          init({
+               token,
+               dashboardId: "Czdhr9zpgjwnq"
+          });
+
+</script>
