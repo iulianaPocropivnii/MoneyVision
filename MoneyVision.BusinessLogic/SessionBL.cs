@@ -113,5 +113,11 @@ namespace MoneyVision.BusinessLogic
           {
                return this.userApi.UsersListAction(data);
           }
+
+          public UDeleteResp UserDeleteAction(UDeleteData data)
+          {
+               return this.userApi.UserDeleteAction(data);
+          }
+
      }
 }
