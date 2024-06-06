@@ -11,6 +11,10 @@ using MoneyVision.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using MoneyVision.Domain.Entities.Category;
 using MoneyVision.Domain.Entities.User.Responses;
+using MoneyVision.Domain.Entities.Transaction.Responses;
+using System.Data.Entity;
+using MoneyVision.Domain.Entities.Transaction.Requests;
+using MoneyVision.Domain.Entities.Transaction;
 
 namespace MoneyVision.BusinessLogic.Core
 {
@@ -45,7 +49,43 @@ namespace MoneyVision.BusinessLogic.Core
 
             return new GenericResp { Status = true };
         }
+
+        internal CategoryItemResp CategoryItemAction(CategoryItemData data)
+        {
+            Category category;
+
+            using (var db = new DatabaseContext())
+            {
+                category = db.Categories.FirstOrDefault(t => t.WorkspaceId == data.WorkspaceId && t.Id == data.Id);
+            }
+
+            if (category == null)
+                return new CategoryItemResp { Status = false, StatusMsg = "Category not found" };
+
+            return new CategoryItemResp { Status = true, Category = category };
         }
+
+        internal CategoryUpdateResp CategoryUpdateAction(CategoryUpdateData data)
+        {
+            using (var db = new DatabaseContext()) 
+            {
+                Category category =db.Categories.FirstOrDefault(t => t.WorkspaceId == data.WorkspaceId && t.Id == data.Id);
+                if(category == null)
+                {
+                    return new CategoryUpdateResp { StatusMsg = "Category Not Found", Status = false };
+                }
+                category.Name = data.Name;
+                category.WorkspaceId = data.WorkspaceId;
+
+                db.Entry(category).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+                return new CategoryUpdateResp { Status = true };
+
+            }
+        }
+    }
  }
 
 

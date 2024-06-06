@@ -1,5 +1,6 @@
 ﻿using MoneyVision.BusinessLogic;
 using MoneyVision.Domain.Entities.Category.Requests;
+using MoneyVision.Domain.Entities.Transaction.Requests;
 using MoneyVision.Domain.Entities.User;
 using MoneyVision.Domain.Entities.User.Responses;
 using MoneyVision.Domain.Enums;
@@ -24,6 +25,7 @@ namespace MoneyVision.Web.Controllers
             var responseData = _session.CategoriesListAction(categoriesListData);
 
             ViewBag.FormAction = "/Workspaces/" + workspaceId + "/Categories/Index";
+            ViewBag.workspaceId = workspaceId;
             return View(responseData);
         }
 
@@ -51,7 +53,30 @@ namespace MoneyVision.Web.Controllers
             return Redirect("/Workspaces/" + workspaceId + "/Categories/Index");
         }
 
+        [HttpPut]
+        public JsonResult UpdateCategory(int workspaceId, int id, CategoryUpdateData data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "Validation failed" });
+            }
+
+            data.Id = id;
+            data.WorkspaceId = workspaceId;
+
+            var response = _session.CategoryUpdateAction(data);
+
+            if (response.Status)
+            {
+                return Json(new { success = true, message = "Category updated successfully" });
+            }
+            else
+            {
+                return Json(new { success = false, message = response.StatusMsg });
+            }
+        }
     }
+
 }
 
 
