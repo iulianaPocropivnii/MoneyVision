@@ -1141,8 +1141,8 @@ section {
      color: black;
 }
 
-     .profile-content h4 {
-          margin-bottom: 10px;
+     .profile-content h3 {
+          margin-top: 10px;
           color: black;
           font-family: 'Montserrat';
      }
