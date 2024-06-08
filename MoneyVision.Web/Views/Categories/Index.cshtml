@@ -1,140 +1,156 @@
-﻿@model MoneyVision.Domain.Entities.Category.Responses.CategoriesListResp
+﻿﻿@model MoneyVision.Domain.Entities.Category.Responses.CategoriesListResp
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+     ViewBag.Title = "Index";
+     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
 
-<style>
-    body {
-        font-family: 'Montserrat', sans-serif;
-        color: black;
-        background-color: #f8f9fa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
- 
-    }
-    .container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
 
-    h1 {
-        margin-bottom: 20px;
-        color: black;
-        text-align: left;
-    }
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Users</title>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+     <style>
+          body {
+               font-family: 'Montserrat', sans-serif;
+               color: black;
+               background-color: #f8f9fa;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+          }
 
-    .categories-list {
-        gap: 10px;
-        align-items: center;
-    }
+          .container {
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
 
-    .category-item {
-        display: flex;
-        align-items: center;
-    }
+          h2 {
+               margin-bottom: 20px;
+               color: black;
+          }
 
-    .create-category-form {
-        
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
+          label {
+               color: black;
+          }
 
-    button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-right: 10px;
-    }
+          h4 {
+               color: black;
+          }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+          .user-actions {
+               display: flex;
+               align-items: center;
+          }
 
-    .validation-error {
-        color: red;
-    }
+               .user-actions select {
+                    margin-right: 10px;
+               }
 
-    .input-name {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-right: 10px;
-    }
-</style>
+          .category-item {
+               display: flex;
+               align-items: center;
+               margin-bottom: .7rem;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+               background: white;
+          }
 
-<body>
-    <div class="container">
-        <h1>Categories</h1>
+          .edit-category-form {
+               flex-grow: 1;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               margin-right: 1rem;
+          }
 
-        <form method="post" action="@ViewBag.FormAction" class="create-category-form">
-            <input type="text" name="Name" placeholder="Enter category name" required class="input-name">
-            <button type="submit"><i class="fas fa-plus-circle"></i> Create</button>
-        </form>
+          input[type=text]:hover {
+               border: 1px solid #ddd;
+          }
 
-        <div class="categories-list">
-            <div><strong>Name</strong></div>
-            <div></div>
-            <div></div>
+          .create-name-input {
+               padding: 3px 2px;
+               border: 2px solid #ccc;
+               border-radius: 2px;
+               margin-right: .7rem;
+          }
+     </style>
+</head>
 
-            @foreach (var item in Model.Categories)
-            {
-                <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
-                    <input type="text" name="Name" value="@item.Name" required class="input-name">
-                    <span class="validation-error"></span>
-                    <button class="edit-category-btn" data-category-id="@item.Id">Edit</button>
-                    <button class="delete-category-btn" data-category-id="@item.Id">Delete</button>
-                </div>
-            }
-        </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div style="display: flex; flex-direction: column;">
+     <h1><span style="color: black;">Categories</span></h1>
+     <form class="category-item" method="post" action="@ViewBag.FormAction">
+          <input type="text" class="create-name-input" name="Name" placeholder="Enter category name" required>
+          <div><button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create</button></div>
+     </form>
 
-    <script>
+     <div class="categories-list">
+          @foreach (var item in Model.Categories)
+          {
+               <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
+
+                    <form class="edit-category-form" data-id="@item.Id" id="edit-category-form-@(item.Id)">
+                         <input type="text" style="color: black" name="Name" value="@item.Name" required>
+                         <span class="validation-error"></span> 
+                         <button class="btn btn-primary" data-category-id="@item.Id">Edit</button>
+                    </form>
+                    <button class="delete-category-btn btn btn-danger btn-sm delete-button" style="width: auto;" data-category-id="@item.Id">Delete</button>
+
+               </div>
+          }
+     </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
     $(document).ready(function () {
-        $(".edit-category-btn").on("click", function (event) {
-            event.preventDefault();
-            var form = $(this).siblings("input[name='Name']").parent();
-            form.submit();
+        // Edit Category
+        $(".edit-category-name").hide(); // Initially hide edit input
+
+        $(".category-item").on("click", ".edit-category-btn", function (event) {
+            event.preventDefault(); // Prevent default form submission
+            $(this).siblings(".edit-category-name").show(); // Show edit input
+            $(this).hide(); // Hide edit button
         });
 
         $(".edit-category-form").submit(function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
 
             var form = $(this);
             var categoryId = form.attr("data-Id");
             var updatedName = form.find("[name='Name']").val();
-            var workspaceId = @ViewBag.workspaceId;
+            var workspaceId = @ViewBag.workspaceId; // Retrieve workspace ID from parent element
 
+            // Client-side validation (optional)
             var validationError = "";
             if (updatedName.trim() === "") {
                 validationError = "Please enter a name for the category.";
             }
 
             if (validationError) {
-                form.find(".validation-error").text(validationError);
+                form.find(".validation-error").text(validationError); // Display validation error
                 return; // Prevent submitting form if validation fails
             }
 
             $.ajax({
                 url: "/Workspaces/" + workspaceId + "/Categories/UpdateCategory/" + categoryId,
-                type: "PUT",
+                type: "POST",
                 data: { Name: updatedName, Id: categoryId }, // Ensure data matches CategoryUpdateData model
                 success: function (response) {
                     if (response.success) {
-                        form.find("input[name='Name']").val(updatedName); // Update displayed name
+                        form.find(".edit-category-name").val(updatedName); // Update displayed name
+                        form.find(".edit-category-name").hide(); // Hide edit input
+                        form.find(".edit-category-btn").show(); // Show edit button
                         form.find(".validation-error").text(""); // Clear validation error
                         alert("Category updated successfully!");
                     } else {
@@ -150,5 +166,4 @@
         // Delete Category (implementation not provided here)
         // ...
     });
-    </script>
-</body>
+</script>

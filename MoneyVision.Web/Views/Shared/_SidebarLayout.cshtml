@@ -27,7 +27,7 @@
 
      @Styles.Render("~/bundles/css")
 </head>
-<body class="sidebar-layout">
+<body class="sidebar-layout" style="overflow: hidden">
     <nav class="sidebar-layout-sidebar">
         <div class="sidebar-logo">
             <img src="~/Content/img/logo_money_vision.png" alt="Your Logo">
@@ -35,7 +35,7 @@
 
         @Html.Partial("_Sidebar")
     </nav>
-    <main class="sidebar-layout-content">
+    <main class="sidebar-layout-content" style="height: 100vh; overflow: auto;">
         @RenderBody()
     </main>
     @Scripts.Render("~/bundles/bootstrap/js")

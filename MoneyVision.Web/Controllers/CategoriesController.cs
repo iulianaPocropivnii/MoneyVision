@@ -53,7 +53,7 @@ namespace MoneyVision.Web.Controllers
             return Redirect("/Workspaces/" + workspaceId + "/Categories/Index");
         }
 
-        [HttpPut]
+        [HttpPost]
         public JsonResult UpdateCategory(int workspaceId, int id, CategoryUpdateData data)
         {
             if (!ModelState.IsValid)
