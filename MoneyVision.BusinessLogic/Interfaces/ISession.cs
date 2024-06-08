@@ -23,6 +23,7 @@ namespace MoneyVision.BusinessLogic.Interfaces
           UserMinimal GetUserByCookie(string apiCookieValue);
           UserMinimal GetUserByCookie(string apiCookieValue, int worksapceId);
           UProfileResp UserProfileAction(UProfileData data, UserMinimal _currentUser);
+          UChangeRoleResp UserChangeRoleAction(UChangeRoleData data);
           void UserLogoutAction(UserMinimal _currentUser);
           UAddResp AddUserAction(UAddData data);
           TransactionsListResp TransactionsListAction(TransactionsListData data);

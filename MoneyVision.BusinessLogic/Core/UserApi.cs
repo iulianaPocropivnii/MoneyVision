@@ -340,6 +340,40 @@ namespace MoneyVision.BusinessLogic.Core
                return response;
           }
 
+          internal UChangeRoleResp UserChangeRoleAction(UChangeRoleData data)
+          {
+               var response = new UChangeRoleResp();
+
+               using (var db = new DatabaseContext())
+               {
+                    var userWorkspace = db.UserWorkspaces.FirstOrDefault(u => u.UserId == data.UserId && u.WorkspaceId == data.WorkspaceId);
+
+                    if (userWorkspace == null)
+                    {
+                         response.Status = false;
+                         response.StatusMsg = "Such user doesn't belong to such organization";
+                         return response;
+                    }
+
+                    userWorkspace.Level = data.Level;
+
+                    try
+                    {
+                         db.Entry(userWorkspace).State = EntityState.Modified;
+                         db.SaveChanges();
+                         response.Status = true;
+                         response.StatusMsg = "User role updated successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                         response.Status = false;
+                         response.StatusMsg = "An error occurred: " + ex.Message;
+                    }
+               }
+
+               return response;
+          }
+
           internal void UserLogoutAction(UserMinimal currentUser)
           {
                Session session;

@@ -77,7 +77,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center" data-id="@user.Id">
                          <span>@user.Email</span>
                          <div class="user-actions">
-                              <select class="custom-select" onchange="changeRole(this, '@user.Id')">
+                              <select class="custom-select update-select" onchange="changeRole(this, '@user.Id')">
                                    <option value="Viewer" @(user.Level == UserRole.Viewer ? "selected" : "")>Viewer</option>
                                    <option value="Editor" @(user.Level == UserRole.Editor ? "selected" : "")>Editor</option>
                                    <option value="Admin" @(user.Level == UserRole.Admin ? "selected" : "")>Admin</option>
@@ -119,10 +119,21 @@
 
           function changeRole(select, userId) {
                const newRole = select.value;
+
+               let Level;
+
+               if (newRole === 'Admin')
+                    Level = 2;
+               else if (newRole === 'Editor')
+                    Level = 1;
+               else {
+                    Level = 0;
+               }
+
                $.ajax({
-                    url: `/Users/ChangeRole/${userId}`,
+                    url: `/Workspaces/@ViewBag.WorkspaceId/Users/Update/${userId}`,
                     type: 'POST',
-                    data: { role: newRole },
+                    data: { Level },
                     success: function (result) {
                          if (!result.success) {
                               alert(result.message);
