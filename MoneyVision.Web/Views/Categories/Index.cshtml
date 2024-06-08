@@ -5,62 +5,126 @@
     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
 
-<div>
-    <h1><span style="color: black;">Categories</span></h1>
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+ 
+    }
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    <div class="categories-list">
-        <div>Name</div>
-        <form method="post" action="@ViewBag.FormAction">
-            <div><button type="submit"><i class="fas fa-plus-circle"></i> Create</button></div>
-            <input type="text" name="Name" placeholder="Enter category name" required>
-        </form>
-        <div></div>
+    h1 {
+        margin-bottom: 20px;
+        color: black;
+        text-align: left;
+    }
 
-        @foreach (var item in Model.Categories)
-        {
-            <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
-             
-                    <form class="edit-category-form" data-id="@item.Id" id="edit-category-form-@(item.Id)">
-                        <input type="text" name="Name" value="@item.Name" required>
-                        <span class="validation-error"></span> <button data-category-id="@item.Id">Edit</button>
-                    </form>
-            </div>
-            <button class="delete-category-btn" data-category-id="@item.Id">Delete</button>
-            <div></div>
+    .categories-list {
+        gap: 10px;
+        align-items: center;
+    }
+
+    .category-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .create-category-form {
+        
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-right: 10px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
         }
+
+    .validation-error {
+        color: red;
+    }
+
+    .input-name {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Categories</h1>
+
+        <form method="post" action="@ViewBag.FormAction" class="create-category-form">
+            <input type="text" name="Name" placeholder="Enter category name" required class="input-name">
+            <button type="submit"><i class="fas fa-plus-circle"></i> Create</button>
+        </form>
+
+        <div class="categories-list">
+            <div><strong>Name</strong></div>
+            <div></div>
+            <div></div>
+
+            @foreach (var item in Model.Categories)
+            {
+                <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
+                    <input type="text" name="Name" value="@item.Name" required class="input-name">
+                    <span class="validation-error"></span>
+                    <button class="edit-category-btn" data-category-id="@item.Id">Edit</button>
+                    <button class="delete-category-btn" data-category-id="@item.Id">Delete</button>
+                </div>
+            }
+        </div>
     </div>
 
-</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
+    <script>
     $(document).ready(function () {
-        // Edit Category
-        $(".edit-category-name").hide(); // Initially hide edit input
-
-        $(".category-item").on("click", ".edit-category-btn", function (event) {
-            event.preventDefault(); // Prevent default form submission
-            $(this).siblings(".edit-category-name").show(); // Show edit input
-            $(this).hide(); // Hide edit button
+        $(".edit-category-btn").on("click", function (event) {
+            event.preventDefault();
+            var form = $(this).siblings("input[name='Name']").parent();
+            form.submit();
         });
 
         $(".edit-category-form").submit(function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
             var form = $(this);
             var categoryId = form.attr("data-Id");
             var updatedName = form.find("[name='Name']").val();
-            var workspaceId = @ViewBag.workspaceId; // Retrieve workspace ID from parent element
+            var workspaceId = @ViewBag.workspaceId;
 
-            // Client-side validation (optional)
             var validationError = "";
             if (updatedName.trim() === "") {
                 validationError = "Please enter a name for the category.";
             }
 
             if (validationError) {
-                form.find(".validation-error").text(validationError); // Display validation error
+                form.find(".validation-error").text(validationError);
                 return; // Prevent submitting form if validation fails
             }
 
@@ -70,9 +134,7 @@
                 data: { Name: updatedName, Id: categoryId }, // Ensure data matches CategoryUpdateData model
                 success: function (response) {
                     if (response.success) {
-                        form.find(".edit-category-name").val(updatedName); // Update displayed name
-                        form.find(".edit-category-name").hide(); // Hide edit input
-                        form.find(".edit-category-btn").show(); // Show edit button
+                        form.find("input[name='Name']").val(updatedName); // Update displayed name
                         form.find(".validation-error").text(""); // Clear validation error
                         alert("Category updated successfully!");
                     } else {
@@ -88,4 +150,5 @@
         // Delete Category (implementation not provided here)
         // ...
     });
-</script>
+    </script>
+</body>
