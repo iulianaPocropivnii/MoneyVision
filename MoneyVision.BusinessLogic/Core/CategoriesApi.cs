@@ -85,7 +85,46 @@ namespace MoneyVision.BusinessLogic.Core
 
             }
         }
-    }
+
+          internal CategoryDeleteResp CategoryDeleteAction(CategoryDeleteData data)
+          {
+               using (var db = new DatabaseContext())
+               {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                         try
+                         {
+                              // Execute the delete commands using raw SQL
+                              int transactionsDeleted = db.Database.ExecuteSqlCommand(
+                                  "DELETE FROM Transactions WHERE CategoryId = {1} AND WorkspaceId = {0}",
+                                  data.WorkspaceId, data.Id);
+
+                              int categoryDeleted = db.Database.ExecuteSqlCommand(
+                                  "DELETE FROM Categories WHERE WorkspaceId = {0} AND Id = {1}",
+                                  data.WorkspaceId, data.Id);
+
+                              // Check if the category was successfully deleted
+                              if (categoryDeleted == 0)
+                              {
+                                   transaction.Rollback();
+                                   return new CategoryDeleteResp { StatusMsg = "Category Not Found", Status = false };
+                              }
+
+                              // Commit the transaction
+                              transaction.Commit();
+
+                              return new CategoryDeleteResp { Status = true };
+                         }
+                         catch (Exception)
+                         {
+                              // Rollback the transaction in case of an error
+                              transaction.Rollback();
+                              throw;
+                         }
+                    }
+               }
+          }
+     }
  }
 
 

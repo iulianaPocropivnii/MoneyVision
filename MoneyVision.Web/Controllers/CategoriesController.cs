@@ -75,7 +75,28 @@ namespace MoneyVision.Web.Controllers
                 return Json(new { success = false, message = response.StatusMsg });
             }
         }
-    }
+
+          [HttpPost]
+          public JsonResult Delete(int workspaceId, int id)
+          {
+               CategoryDeleteData data = new CategoryDeleteData
+               {
+                    Id = id,
+                    WorkspaceId = workspaceId
+               };
+
+               var response = _session.CategoryDeleteAction(data);
+
+               if (response.Status)
+               {
+                    return Json(new { success = true, message = "Category updated successfully" });
+               }
+               else
+               {
+                    return Json(new { success = false, message = response.StatusMsg });
+               }
+          }
+     }
 
 }
 

@@ -95,16 +95,16 @@
      <div class="categories-list">
           @foreach (var item in Model.Categories)
           {
-               <div class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
+          <li class="category-item" data-category-id="@item.Id" data-workspace-id="@item.WorkspaceId">
 
-                    <form class="edit-category-form" data-id="@item.Id" id="edit-category-form-@(item.Id)">
-                         <input type="text" style="color: black" name="Name" value="@item.Name" required>
-                         <span class="validation-error"></span> 
-                         <button class="btn btn-primary" data-category-id="@item.Id">Edit</button>
-                    </form>
-                    <button class="delete-category-btn btn btn-danger btn-sm delete-button" style="width: auto;" data-category-id="@item.Id">Delete</button>
+               <form class="edit-category-form" data-id="@item.Id" id="edit-category-form-@(item.Id)">
+                    <input type="text" style="color: black" name="Name" value="@item.Name" required>
+                    <span class="validation-error"></span>
+                    <button class="btn btn-primary" data-category-id="@item.Id">Edit</button>
+               </form>
+               <button class="delete-category-btn btn btn-danger btn-sm delete-button" style="width: auto;" data-category-id="@item.Id">Delete</button>
 
-               </div>
+          </li>
           }
      </div>
 
@@ -163,7 +163,25 @@
             });
         });
 
-        // Delete Category (implementation not provided here)
-        // ...
+      $('.delete-button').click(function () {
+           var categoryId = $(this).data('category-id');
+           var workspaceId = @ViewBag.WorkspaceId;
+           if (confirm('Are you sure you want to delete this user?')) {
+                $.ajax({
+                     url: "/Workspaces/" + workspaceId + "/Categories/Delete/" + categoryId,
+                     type: 'POST',
+                     success: function (result) {
+                          if (result.success) {
+                               $('li[data-category-id="' + categoryId + '"]').remove();
+                          } else {
+                               alert(result.message);
+                          }
+                     },
+                     error: function (xhr, status, error) {
+                          alert('Error: ' + error);
+                     }
+                });
+           }
+ });
     });
 </script>

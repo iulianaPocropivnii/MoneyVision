@@ -124,7 +124,6 @@ namespace MoneyVision.BusinessLogic.Core
                     }
 
                     db.Transactions.Remove(transaction);
-                    db.SaveChanges();
 
                     return new TransactionDeleteItemResp { Status = true };
                }
