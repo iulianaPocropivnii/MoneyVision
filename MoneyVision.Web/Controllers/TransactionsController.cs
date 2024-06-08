@@ -107,7 +107,7 @@ namespace MoneyVision.Web.Controllers
 
           }
 
-          [HttpDelete]
+          [HttpPost]
           public ActionResult Delete(int workspaceId, int id)
           {
                SessionStatus(workspaceId);

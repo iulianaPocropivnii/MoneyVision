@@ -33,7 +33,7 @@
                        if (confirm('Are you sure you want to delete this item?')) {
                           $.ajax({
                               url: "/Workspaces/@ViewBag.WorkspaceId/Transactions/Delete/" + itemId,
-                               type: 'DELETE',
+                               type: 'POST',
                                success: function (result) {
                                     if (result.success) {
                                         $('div[data-id="' + itemId + '"]').remove();
