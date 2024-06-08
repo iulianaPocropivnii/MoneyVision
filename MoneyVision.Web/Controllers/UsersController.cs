@@ -64,7 +64,7 @@ namespace MoneyVision.Web.Controllers
                return Redirect("/Workspaces/" + workspaceId + "/Users/Index");
           }
 
-          [HttpDelete]
+          [HttpPost]
           public ActionResult Delete(int workspaceId, int id)
           {
                SessionStatus(workspaceId);
