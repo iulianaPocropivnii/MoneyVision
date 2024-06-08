@@ -87,5 +87,28 @@ namespace MoneyVision.Web.Controllers
                }
           }
 
+          [HttpPost]
+          public ActionResult Update(int workspaceId, int id, UChangeRoleData data)
+          {
+               SessionStatus(workspaceId);
+               if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+               {
+                    return RedirectToAction("Index", "Login");
+               }
+
+               data.WorkspaceId = workspaceId;
+               data.UserId = id;
+
+               var responseData = _session.UserChangeRoleAction(data);
+
+               if (responseData.Status == false)
+               {
+                    return Json(new { success = false, message = responseData.StatusMsg });
+               }
+               else
+               {
+                    return Json(new { success = true });
+               }
+          }
      }
 }

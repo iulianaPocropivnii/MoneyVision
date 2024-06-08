@@ -55,6 +55,10 @@ namespace MoneyVision.BusinessLogic
           {
                return this.userApi.UserProfileAction(_profile, _currentUser);
           }
+          public UChangeRoleResp UserChangeRoleAction(UChangeRoleData _data)
+          {
+               return this.userApi.UserChangeRoleAction(_data);
+          }
           public TransactionsListResp TransactionsListAction(TransactionsListData data)
           {
                return this.transactionApi.TransactionsListAction(data);
