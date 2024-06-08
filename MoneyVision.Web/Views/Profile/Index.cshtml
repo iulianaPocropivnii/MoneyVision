@@ -37,9 +37,9 @@
                margin-right: 10px;
           }
 </style>
-<body>
+<body style="margin-top: 50px">
      <div class="container">
-          <div id="profile-section" class="profile-section rounded p-5" style="margin-left: -50px">
+          <div id="profile-section" class="profile-section rounded p-5" style="margin-left: -50px;">
                @Html.ValidationSummary(true)
                @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form", @id = "UsersForm" }))
                {
