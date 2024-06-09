@@ -4,35 +4,100 @@
      ViewBag.Title = "Create";
      Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
-
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-     <meta name="viewport" content="width=device-width" />
-     <title>Update</title>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <title>Create Transaction</title>
+
+     <style>
+          body {
+               font-family: 'Montserrat', sans-serif;
+               color: black;
+               background-color: #f8f9fa;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+          }
+
+          .container {
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+
+          h2 {
+               margin-bottom: 20px;
+               color: black;
+          }
+
+          label {
+               color: black;
+          }
+
+          h4 {
+               color: black;
+          }
+
+          .user-actions {
+               display: flex;
+               align-items: center;
+          }
+
+               .user-actions select {
+                    margin-right: 10px;
+               }
+
+          /* New styles for date picker and description */
+
+          #createdAt {
+               width: 100%; /* Make date picker fill the full width */
+          }
+
+          #description {
+               resize: vertical; /* Allow resizing the description textarea */
+               min-height: 100px; /* Set a minimum height for the description */
+          }
+     </style>
 </head>
 <body>
-     class="container mt-5 mb-5">
-     <h1>Update transaction</h1>
+     <div class="container mt-5 mb-5">
+          <h2>Update transaction</h2>
 
-     <form method="post" action="@ViewBag.FormAction">
-          <input name="Amount" type="number" placeholder="Amount" value="@Model.Transaction.Amount" required />
-          <br />
-          <select name="CategoryId" required>
-               @foreach (var item in Model.Categories)
-               {
-                    <option value="@item.Id" @(Model.Transaction.CategoryId == item.Id ? "selected" : "") >
-                         @item.Name
-                    </option>
-               }
-          </select>
-          <br />
-          <input name="CreatedAt" type="datetime-local" value="@Model.Transaction.CreatedAt.ToString("yyyy-MM-ddTHH:mm")" required />
-          <br />
-          <textarea name="Description" value="@Model.Transaction.Description"></textarea>
-          <br />
-          <button type="submit">Update</button>
-     </form>
+          <form method="post" action="@ViewBag.FormAction">
+               <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input name="Amount" type="number" class="form-control" placeholder="Amount" value="@Model.Transaction.Amount" required />
+               </div>
+               <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="CategoryId" class="form-control" required>
+                         @foreach (var item in Model.Categories)
+                         {
+                              <option value="@item.Id" @(Model.Transaction.CategoryId == item.Id ? "selected" : "")>
+                                   @item.Name
+                              </option>
+                         }
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="createdAt">Date and Time</label>
+                    <input name="CreatedAt"  class="form-control" type="datetime-local" value="@Model.Transaction.CreatedAt.ToString("yyyy-MM-ddTHH:mm")" required />
+               </div>
+
+               <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="Description" class="form-control" rows="3" placeholder="Enter description"></textarea>
+               </div>
+               <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+     </div>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
